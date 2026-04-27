@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+
+@if (vehiculo()) {
+<div class="detail-container">
+  <div class="detail-hero">
+    <h1>{{ vehiculo().VEH_modelo }}</h1>
+    <span class="badge">{{ vehiculo().VEH_placa }}</span>
+  </div>
+
+  <div class="detail-content">
+    <div class="specs">
+      <div class="spec-item"><span>📅</span> Año: {{ vehiculo().VEH_anio }}</div>
+      <div class="spec-item"><span>🚀</span> Kilometraje: {{ vehiculo().VEH_kilometraje }} km</div>
+    </div>
+
+    <button class="btn-reserve-now" (click)="irAReservar()">Reservar Ahora</button>
+  </div>
+</div>
+}

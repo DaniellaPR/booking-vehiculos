@@ -1,0 +1,45 @@
+<div class="page-header">
+  <div>
+    <h1>Gestión de Flota</h1>
+    <p>Lista total de vehículos registrados en el sistema.</p>
+  </div>
+  <button class="btn btn-primary">+ Nuevo Vehículo</button>
+</div>
+
+@if (isLoading()) {
+<div class="loader">Cargando flota...</div>
+} @else {
+<div class="table-card">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Placa</th>
+        <th>Modelo</th>
+        <th>Año</th>
+        <th>Kilometraje</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (v of vehiculos(); track v.VEH_id) {
+      <tr>
+        <td><strong>{{ v.VEH_placa }}</strong></td>
+        <td>{{ v.VEH_modelo }}</td>
+        <td>{{ v.VEH_anio }}</td>
+        <td>{{ v.VEH_kilometraje }} km</td>
+        <td><span class="badge badge-success">Activo</span></td>
+        <td>
+          <button class="btn-icon" title="Editar">✏️</button>
+          <button class="btn-icon btn-del" title="Eliminar" (click)="eliminar(v.VEH_id)">🗑️</button>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="6" style="text-align:center; color: var(--text2);">No hay vehículos registrados.</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+}

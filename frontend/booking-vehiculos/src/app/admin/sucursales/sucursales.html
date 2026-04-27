@@ -1,0 +1,44 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div>
+      <h1>Sucursales y Agencias</h1>
+      <p>Administración de puntos de retiro y entrega a nivel nacional.</p>
+    </div>
+    <button class="btn-primary">+ Nueva Agencia</button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-mini"><span>Total:</span> <strong>{{ sucursales().length }}</strong></div>
+    <div class="stat-mini"><span>Activas:</span> <strong>{{ sucursales().length }}</strong></div>
+  </div>
+
+  <div class="table-container">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Ciudad / Ubicación</th>
+          <th>Dirección Detallada</th>
+          <th>Contacto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (s of sucursales(); track s.SUC_id) {
+        <tr>
+          <td><strong class="suc-name">{{ s.SUC_nombre }}</strong></td>
+          <td><span class="tag-geo">📍 {{ s.SUC_ciudad }}</span></td>
+          <td>{{ s.SUC_direccion }}</td>
+          <td>{{ s.SUC_telefono || 'Sin asignar' }}</td>
+          <td>
+            <div class="actions">
+              <button title="Editar">✏️</button>
+              <button title="Ver Flota">🚗</button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

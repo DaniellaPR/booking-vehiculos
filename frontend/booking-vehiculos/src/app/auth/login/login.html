@@ -1,0 +1,113 @@
+<!-- login.html -->
+<div class="left">
+  <div class="left-bg"></div>
+  <div class="grid-bg"></div>
+  <div class="left-content">
+    <div class="logo"><div class="logo-dot"></div>DRIVE<span>X</span></div>
+  </div>
+  <div class="left-hero">
+    <h1>GESTIONA<br>TU <em>FLOTA</em><br>DESDE AQUÍ</h1>
+    <p>Panel de administración y reservas en tiempo real.</p>
+  </div>
+  <div class="left-chips">
+    <div class="chip"><span class="chip-num">5</span><span class="chip-lbl">Sucursales</span></div>
+    <div class="chip"><span class="chip-num">5</span><span class="chip-lbl">Vehículos</span></div>
+    <div class="chip"><span class="chip-num">2</span><span class="chip-lbl">Reservas activas</span></div>
+  </div>
+</div>
+
+<div class="right">
+  <div class="form-header">
+    <div class="form-eyebrow">Sistema DriveX</div>
+    <div class="form-title">INICIAR SESIÓN</div>
+    <div class="form-sub">Ingresa tus credenciales para continuar</div>
+  </div>
+
+  @if (globalError()) {
+  <div class="alert" [class.alert-lock]="lockSecs() > 0">
+    <span>{{ lockSecs() > 0 ? '🔒' : '⚠️' }}</span>
+    <span>{{ globalError() }}</span>
+  </div>
+  }
+
+  <!-- EMAIL -->
+  <div class="field" [class.err]="emailError()" [class.ok]="!emailError() && emailTouched && email">
+    <label class="field-label">Correo electrónico @if(!emailError() && emailTouched && email){<span class="ok-mark">✓</span>}</label>
+    <div class="field-wrap">
+      <span class="fi">✉️</span>
+      <input class="field-input" type="email"
+             [value]="email" (input)="onEmailInput($event)" (blur)="onEmailBlur()"
+             placeholder="tu@correo.com" maxlength="254"
+             autocomplete="email" spellcheck="false" autocapitalize="off"
+             [disabled]="isLoading() || lockSecs() > 0">
+    </div>
+    @if (emailError()) { <div class="field-err">⚠ {{ emailError() }}</div> }
+  </div>
+
+  <!-- CONTRASEÑA -->
+  <div class="field" [class.err]="passwordError()" [class.ok]="!passwordError() && passwordTouched && password">
+    <label class="field-label">
+      Contraseña
+      @if (strength() > 0) { <span class="strength-badge" [class]="strengthClass()">{{ strengthLabel() }}</span> }
+    </label>
+    <div class="field-wrap">
+      <span class="fi">🔒</span>
+      <input class="field-input" [type]="showPassword ? 'text' : 'password'"
+             [value]="password" (input)="onPasswordInput($event)" (blur)="onPasswordBlur()"
+             placeholder="Mín. 8 car., mayús., número, símbolo" maxlength="128"
+             autocomplete="current-password"
+             [disabled]="isLoading() || lockSecs() > 0">
+      <button class="field-toggle" type="button" (click)="togglePassword()">{{ showPassword ? '🙈' : '👁' }}</button>
+    </div>
+    @if (password.length > 0) {
+    <div class="strength-bar"><div class="strength-fill" [class]="strengthClass()" [style.width.%]="strength()"></div></div>
+    <ul class="rules">
+      @for (r of rules(); track r.id) {
+      <li [class.pass]="r.ok" [class.fail]="!r.ok && passwordTouched">
+        <span>{{ r.ok ? '✓' : '○' }}</span> {{ r.label }}
+      </li>
+      }
+    </ul>
+    }
+    @if (passwordError()) { <div class="field-err">⚠ {{ passwordError() }}</div> }
+  </div>
+
+  <!-- RECORDARME -->
+  <div class="form-row">
+    <label class="chk-wrap">
+      <input type="checkbox" [(ngModel)]="remember" class="chk">
+      <span>Recordarme</span>
+    </label>
+    <button class="link-btn" type="button">¿Olvidaste tu contraseña?</button>
+  </div>
+
+  <!-- SUBMIT -->
+  <button class="btn-submit" type="button"
+          [disabled]="isLoading() || lockSecs() > 0"
+          [class.loading]="isLoading()"
+          [class.locked]="lockSecs() > 0"
+          (click)="handleLogin()">
+    <span class="btn-text">
+      @if (lockSecs() > 0) { 🔒 Bloqueado ({{ lockSecs() }}s) }
+      @else { Ingresar al sistema }
+    </span>
+    <span class="btn-spinner"><span class="spinner"></span> Verificando...</span>
+  </button>
+
+  @if (showRedirect()) {
+  <div class="redirect-box">
+    <div class="redirect-role">{{ redirectRole() }}</div>
+    <div class="redirect-msg">✓ Acceso concedido — redirigiendo...</div>
+  </div>
+  }
+
+  <div class="divider">o</div>
+
+  <button class="btn-secondary" type="button" (click)="irARegistro()">
+    ✨ Crear cuenta gratis
+  </button>
+
+  <button class="marketplace-link" type="button" (click)="irAlMarketplace()">
+    🚗 Ir al marketplace sin registrarme
+  </button>
+</div>

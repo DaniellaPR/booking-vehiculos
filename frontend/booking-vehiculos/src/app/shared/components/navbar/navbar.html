@@ -1,0 +1,21 @@
+<header>
+  <div class="logo" routerLink="/">Drive<span>X</span></div>
+  <nav>
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/buscar" style="cursor: pointer;">Vehículos</a>
+    <a href="#footer">Contacto</a>
+  </nav>
+
+  <div class="actions">
+    @if (!authService.isAuthenticated()) {
+    <button class="btn-login" (click)="goToLogin()">Iniciar Sesión</button>
+    <button class="btn-register" (click)="goToLogin()">Registrarse</button>
+    } @else {
+    <span class="welcome-msg">Hola, {{ authService.getName() }}</span>
+    @if (authService.isAdmin() || authService.isVendedor()) {
+    <button class="btn-login" (click)="goToDashboard()">Dashboard</button>
+    }
+    <button class="btn-logout" (click)="logout()">Salir</button>
+    }
+  </div>
+</header>

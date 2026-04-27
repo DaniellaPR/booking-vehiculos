@@ -1,0 +1,35 @@
+/* styles.scss — archivo global de Angular (angular.json lo incluye automáticamente) */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+
+:root {
+  --bg: #080810;
+  --surface: #10101e;
+  --surface2: #17172a;
+  --border: rgba(108,99,255,0.18);
+  --violet: #6c63ff;
+  --violet-dim: #3d38a0;
+  --violet-glow: rgba(108,99,255,0.35);
+  --cyan: #00e5cc;
+  --text: #f0f0fa;
+  --text2: #8888aa;
+  --text3: #44445a;
+  --card-bg: #12121f;
+  --radius: 14px;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}

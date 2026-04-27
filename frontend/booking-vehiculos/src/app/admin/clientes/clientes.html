@@ -1,0 +1,46 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div>
+      <h1>Directorio de Clientes</h1>
+      <p>Gestión y verificación de usuarios registrados en DriveX.</p>
+    </div>
+  </div>
+
+  @if (isLoading()) {
+  <div class="loader">Cargando base de datos...</div>
+  } @else {
+  <div class="table-container">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre Completo</th>
+          <th>Cédula / ID</th>
+          <th>Correo Electrónico</th>
+          <th>Teléfono</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (c of clientes(); track c.CLI_id) {
+        <tr>
+          <td>
+            <div class="user-info">
+              <div class="avatar">{{ c.CLI_nombres[0] }}{{ c.CLI_apellidos[0] }}</div>
+              <strong>{{ c.CLI_nombres }} {{ c.CLI_apellidos }}</strong>
+            </div>
+          </td>
+          <td><code>{{ c.CLI_cedula }}</code></td>
+          <td>{{ c.CLI_correo }}</td>
+          <td>{{ c.CLI_telefono || 'N/A' }}</td>
+          <td><span class="status-tag">Verificado</span></td>
+          <td>
+            <button class="btn-action" (click)="verHistorial(c.CLI_id)" title="Ver Historial">📜</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>

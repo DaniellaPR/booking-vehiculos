@@ -1,0 +1,29 @@
+<div class="admin-page">
+  <div class="page-header">
+    <h1>Extras y Accesorios</h1>
+    <button class="btn-primary">+ Nuevo Extra</button>
+  </div>
+
+  <div class="table-container">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Accesorio</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of extras(); track e.EXT_id) {
+        <tr>
+          <td>{{ e.EXT_nombre }}</td>
+          <td>${{ e.EXT_costo }}</td>
+          <td><span class="status-active">Disponible</span></td>
+          <td><button class="btn-icon">✏️</button></td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

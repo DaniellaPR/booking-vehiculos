@@ -1,0 +1,29 @@
+<div class="admin-page">
+  <div class="page-header">
+    <h1>Esquema de Tarifas</h1>
+    <button class="btn-primary">+ Definir Tarifa</button>
+  </div>
+
+  <div class="table-container">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Categoría</th>
+          <th>Costo Día</th>
+          <th>Fecha Vigencia</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (t of tarifas(); track t.TAR_id) {
+        <tr>
+          <td>Categoría ID: {{ t.CAT_id.substring(0,8) }}</td>
+          <td><strong class="text-violet">${{ t.TAR_costoDia }}</strong></td>
+          <td>{{ t.TAR_fechaCreacion | date:'mediumDate' }}</td>
+          <td><span class="badge">Vigente</span></td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

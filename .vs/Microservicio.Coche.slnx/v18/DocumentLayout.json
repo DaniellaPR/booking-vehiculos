@@ -1,0 +1,261 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Microservicio.Coche.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\app.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\role.guard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\core\\auth\\role.guard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.guard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.guard.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.config.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\app.config.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\environments\\environment.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\booking-vehiculos\\src\\environments\\environment.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Controllers\\V1\\VehiculosController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Microservicio.Coche.API\\Controllers\\V1\\VehiculosController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Controllers\\V1\\ReservasController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Microservicio.Coche.API\\Controllers\\V1\\ReservasController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Program.cs",
+              "RelativeDocumentMoniker": "backend\\Microservicio.Coche.API\\Program.cs",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Program.cs",
+              "RelativeToolTip": "backend\\Microservicio.Coche.API\\Program.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAowBUAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T04:46:55.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "app.scss",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.scss",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\app.scss",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.scss",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\app.scss",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAswDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-04-27T04:43:55.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "app.routes.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.routes.ts",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\app.routes.ts",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.routes.ts",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\app.routes.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-27T04:40:58.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "landing.scss",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.scss",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.scss",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.scss",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.scss",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-04-27T04:39:19.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "landing.html",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.html",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.html",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.html",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.html",
+              "ViewState": "AgIAADcAAAAAAAAAAAAswFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-04-27T04:39:06.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "landing.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.ts",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.ts",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.ts",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\marketplace\\landing\\landing.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-27T04:38:45.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "role.guard.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\role.guard.ts",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\core\\auth\\role.guard.ts",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\role.guard.ts",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\core\\auth\\role.guard.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-27T04:33:56.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "auth.guard.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.guard.ts",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.guard.ts",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.guard.ts",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.guard.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-27T04:33:41.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "app.config.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.config.ts",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\app.config.ts",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\app.config.ts",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\app.config.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-27T04:31:42.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "auth.interceptor.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-27T04:31:29.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "auth.service.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.service.ts",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.service.ts",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.service.ts",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\app\\core\\auth\\auth.service.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-27T04:31:05.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "environment.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\environments\\environment.ts",
+              "RelativeDocumentMoniker": "frontend\\booking-vehiculos\\src\\environments\\environment.ts",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\frontend\\booking-vehiculos\\src\\environments\\environment.ts",
+              "RelativeToolTip": "frontend\\booking-vehiculos\\src\\environments\\environment.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-04-27T04:30:37.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "VehiculosController.cs",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Controllers\\V1\\VehiculosController.cs",
+              "RelativeDocumentMoniker": "backend\\Microservicio.Coche.API\\Controllers\\V1\\VehiculosController.cs",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Controllers\\V1\\VehiculosController.cs",
+              "RelativeToolTip": "backend\\Microservicio.Coche.API\\Controllers\\V1\\VehiculosController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAkwCkAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T02:41:17.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ReservasController.cs",
+              "DocumentMoniker": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Controllers\\V1\\ReservasController.cs",
+              "RelativeDocumentMoniker": "backend\\Microservicio.Coche.API\\Controllers\\V1\\ReservasController.cs",
+              "ToolTip": "C:\\Users\\pdani\\Downloads\\6toSemestre\\Integraci\u00F3n de Sistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Controllers\\V1\\ReservasController.cs",
+              "RelativeToolTip": "backend\\Microservicio.Coche.API\\Controllers\\V1\\ReservasController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAkwD0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T02:40:59.424Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

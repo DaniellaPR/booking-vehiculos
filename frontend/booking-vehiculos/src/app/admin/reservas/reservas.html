@@ -1,0 +1,48 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div>
+      <h1>Control de Reservas</h1>
+      <p>Listado de alquileres activos y solicitudes pendientes.</p>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>ID Reserva</th>
+          <th>Cliente</th>
+          <th>Fechas (Retiro - Entrega)</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of reservas(); track r.RES_id) {
+        <tr>
+          <td><code class="res-id">#{{ r.RES_id.substring(0,8) }}</code></td>
+          <td>Usuario ID: {{ r.CLI_id.substring(0,5) }}...</td>
+          <td>
+            <div class="date-info">
+              <span>{{ r.RES_fechaRetiro | date:'dd/MM/yyyy' }}</span>
+              <span class="arrow">→</span>
+              <span>{{ r.RES_fechaEntrega | date:'dd/MM/yyyy' }}</span>
+            </div>
+          </td>
+          <td>
+            <span class="status-pill" [attr.data-status]="r.RES_estado">
+              {{ r.RES_estado }}
+            </span>
+          </td>
+          <td>
+            <div class="action-buttons">
+              <button class="btn-check" (click)="cambiarEstado(r.RES_id, 'Confirmada')" title="Confirmar">✅</button>
+              <button class="btn-cancel" (click)="cambiarEstado(r.RES_id, 'Cancelada')" title="Cancelar">❌</button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

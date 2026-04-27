@@ -1,0 +1,140 @@
+.admin-layout {
+  display: flex;
+  height: 100vh;
+  background: var(--bg);
+}
+
+.sidebar {
+  width: 260px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 15px;
+  gap: 0;
+}
+
+.sidebar-brand {
+  margin-bottom: 40px;
+  padding-left: 15px;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  color: var(--text);
+
+  span {
+    color: var(--violet);
+  }
+}
+
+.sidebar-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text2);
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background .2s, color .2s;
+
+    span {
+      margin-right: 12px;
+    }
+
+    &.active {
+      background: var(--violet-dim); /* definida en :root como #3d38a0 */
+      color: var(--violet);
+      font-weight: 600;
+    }
+
+    &:hover:not(.active) {
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+    }
+  }
+}
+
+.menu-divider {
+  margin: 20px 0 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text3);
+  letter-spacing: 1px;
+  padding-left: 15px;
+}
+
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.topbar {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.user-pill {
+  background: var(--bg);
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--cyan);
+}
+
+.page-content {
+  padding: 40px;
+  flex: 1;
+}
+
+.btn-logout {
+  margin-top: auto;
+  background: rgba(248,113,113,0.12);
+  color: #f87171;
+  border: 1px solid rgba(248,113,113,0.25);
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background .2s;
+
+  &:hover {
+    background: rgba(248,113,113,0.22);
+  }
+}

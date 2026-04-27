@@ -1,0 +1,106 @@
+.admin-page {
+  padding: 10px;
+}
+
+.page-header {
+  margin-bottom: 30px;
+
+  h1 {
+    font-size: 26px;
+    color: var(--text);
+  }
+
+  p {
+    color: var(--text2);
+    font-size: 14px;
+  }
+}
+
+.table-container {
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    padding: 18px 20px;
+    color: var(--violet);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  td {
+    padding: 18px 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text);
+    font-size: 14px;
+    vertical-align: middle;
+  }
+}
+
+.res-id {
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: var(--cyan);
+}
+
+.date-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .arrow {
+    color: var(--text3);
+    font-size: 12px;
+  }
+}
+
+.status-pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &[data-status="Pendiente"] {
+    background: rgba(255, 209, 102, 0.1);
+    color: #ffd166;
+  }
+
+  &[data-status="Confirmada"] {
+    background: rgba(0, 229, 204, 0.1);
+    color: var(--cyan);
+  }
+
+  &[data-status="Cancelada"] {
+    background: rgba(248, 113, 113, 0.1);
+    color: var(--red);
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+
+  button {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      border-color: var(--violet);
+      transform: scale(1.1);
+    }
+  }
+}

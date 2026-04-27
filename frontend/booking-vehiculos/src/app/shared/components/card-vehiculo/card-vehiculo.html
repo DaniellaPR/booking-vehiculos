@@ -1,0 +1,20 @@
+@if (vehiculo) {
+<div class="v-card">
+  <div class="v-img">
+    <span class="emoji-car">🚗</span>
+  </div>
+  <div class="v-details">
+    <h3>{{ vehiculo.VEH_modelo }}</h3>
+    <div class="specs">
+      <span>📅 {{ vehiculo.VEH_anio }}</span>
+      <span>🛣️ {{ vehiculo.VEH_kilometraje | number }} km</span>
+    </div>
+    <div class="price-row">
+      <div class="price">
+        ${{ vehiculo.VEH_precioPorDia ?? '—' }}<small>/día</small>
+      </div>
+      <a class="btn-reservar" [routerLink]="['/vehiculo', vehiculo.VEH_id]">Ver</a>
+    </div>
+  </div>
+</div>
+}

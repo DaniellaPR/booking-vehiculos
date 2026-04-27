@@ -1,0 +1,117 @@
+/* Navbar estilos — basados en las variables globales de app.scss */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 72px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  color: var(--text);
+
+  span {
+    color: var(--violet);
+  }
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+
+  a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color .2s;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcome-msg {
+  font-size: 13px;
+  color: var(--text2);
+}
+
+.btn-login {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+
+  &:hover {
+    border-color: var(--violet);
+    color: var(--violet);
+  }
+}
+
+.btn-register {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  background: var(--violet);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+
+  &:hover {
+    background: #7c74ff;
+    box-shadow: 0 4px 15px var(--violet-glow);
+  }
+}
+
+.btn-logout {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(248,113,113,0.15);
+  color: #f87171;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+
+  &:hover {
+    background: rgba(248,113,113,0.25);
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 0 20px;
+  }
+
+  nav {
+    display: none;
+  }
+}

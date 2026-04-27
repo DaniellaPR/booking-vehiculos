@@ -1,0 +1,39 @@
+<div class="dashboard-header">
+  <h1>Resumen del Sistema</h1>
+  <p>Monitorea la actividad de la flota en tiempo real.</p>
+</div>
+
+<div class="stats-grid">
+  @for (item of stats(); track item.label) {
+  <div class="stat-card">
+    <div class="stat-icon">{{ item.icon }}</div>
+    <div class="stat-info">
+      <small>{{ item.label }}</small>
+      <h3>{{ item.value }}</h3>
+    </div>
+    <div class="stat-trend">{{ item.trend }}</div>
+  </div>
+  }
+</div>
+
+<div class="recent-table-container">
+  <h3>Últimas Reservas</h3>
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Vehículo</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>#RES-2024</td>
+        <td>Daniela Pozo</td>
+        <td>Kia Picanto</td>
+        <td><span class="badge badge-success">Confirmada</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,114 @@
+.search-container {
+  display: flex;
+  gap: 32px;
+  padding: 40px 80px;
+  min-height: calc(100vh - 72px);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 24px 20px;
+  }
+}
+
+/* SIDEBAR FILTROS */
+.filters {
+  width: 240px;
+  flex-shrink: 0;
+
+  h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+}
+
+.filter-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 8px;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+
+    &:focus {
+      border-color: var(--violet);
+    }
+  }
+}
+
+/* RESULTADOS */
+.results {
+  flex: 1;
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+}
+
+.grid-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* CARD VEHÍCULO (local, busqueda page) */
+.card-v {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    border-color: var(--violet);
+  }
+
+  .card-img {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid var(--border);
+    font-size: 64px;
+  }
+
+  .card-body {
+    padding: 20px;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 13px;
+      color: var(--text2);
+      margin-bottom: 16px;
+    }
+  }
+}

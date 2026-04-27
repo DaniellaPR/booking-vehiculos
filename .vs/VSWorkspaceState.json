@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\frontend\\booking-vehiculos",
+    "\\frontend\\booking-vehiculos\\src",
+    "\\frontend\\booking-vehiculos\\src\\app",
+    "\\frontend\\booking-vehiculos\\src\\app\\core",
+    "\\frontend\\booking-vehiculos\\src\\app\\core\\auth",
+    "\\frontend\\booking-vehiculos\\src\\app\\shared",
+    "\\frontend\\booking-vehiculos\\src\\app\\shared\\components",
+    "\\frontend\\booking-vehiculos\\src\\app\\shared\\components\\navbar"
+  ],
+  "PreviewInSolutionExplorer": false
+}

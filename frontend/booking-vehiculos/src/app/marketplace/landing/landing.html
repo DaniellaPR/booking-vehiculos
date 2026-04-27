@@ -1,0 +1,396 @@
+<body>
+
+  <app-navbar></app-navbar>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Ecuador · Quito · Guayaquil · Cuenca</div>
+      <h1>ALQUILA<br><em>TU RUTA</em><br>HOY</h1>
+      <p class="hero-sub">Vehículos de primera clase disponibles en todo el Ecuador. Elige, reserva y viaja sin complicaciones.</p>
+
+      <!-- SEARCH BOX -->
+      <div class="search-box">
+        <div class="field">
+          <label>Sucursal de retiro</label>
+          <select id="sel-sucursal">
+            <option value="">Cargando...</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Fecha de retiro</label>
+          <input type="date" id="inp-retiro">
+        </div>
+        <div class="field">
+          <label>Fecha de entrega</label>
+          <input type="date" id="inp-entrega">
+        </div>
+        <button class="btn-search" (click)="buscarVehiculos()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+          Buscar
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num" id="stat-vehiculos">—</div>
+      <div class="stat-label">Vehículos disponibles</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="stat-sucursales">—</div>
+      <div class="stat-label">Sucursales en Ecuador</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="stat-categorias">—</div>
+      <div class="stat-label">Categorías</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Soporte disponible</div>
+    </div>
+  </div>
+
+  <!-- ── VEHÍCULOS ── -->
+  <section class="section" id="vehiculos">
+    <div class="section-header">
+      <div>
+        <div class="section-title">FLOTA <span>DISPONIBLE</span></div>
+        <div class="section-sub">Todos los vehículos en tiempo real desde nuestra API</div>
+      </div>
+      <button class="btn-link" (click)="verTodos()">Ver todos →</button>
+    </div>
+
+    <!-- Pills de categoría -->
+    <div class="filters" id="filter-pills">
+      <button class="pill active" (click)="filtrarCategoria(null, this)">Todos</button>
+      <!-- Las categorías se cargan dinámicamente -->
+    </div>
+
+    <!-- Grid de vehículos -->
+    <div class="vehicles-grid" id="vehicles-grid">
+      <!-- Skeletons mientras carga -->
+      <div class="skeleton-card">
+        <div class="skeleton sk-img"></div>
+        <div class="sk-body">
+          <div class="skeleton sk-line sk-w40"></div>
+          <div class="skeleton sk-line sk-w80"></div>
+          <div class="skeleton sk-line sk-w60"></div>
+        </div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton sk-img"></div>
+        <div class="sk-body">
+          <div class="skeleton sk-line sk-w40"></div>
+          <div class="skeleton sk-line sk-w80"></div>
+          <div class="skeleton sk-line sk-w60"></div>
+        </div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton sk-img"></div>
+        <div class="sk-body">
+          <div class="skeleton sk-line sk-w40"></div>
+          <div class="skeleton sk-line sk-w80"></div>
+          <div class="skeleton sk-line sk-w60"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SUCURSALES ── -->
+  <section class="section" id="sucursales" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="section-header">
+      <div>
+        <div class="section-title">NUESTRAS <span>SUCURSALES</span></div>
+        <div class="section-sub">Retira y entrega en cualquier punto del Ecuador</div>
+      </div>
+    </div>
+    <div class="sucursales-grid" id="sucursales-grid">
+      <div class="skeleton-card" style="height:160px;"></div>
+      <div class="skeleton-card" style="height:160px;"></div>
+      <div class="skeleton-card" style="height:160px;"></div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <div class="cta">
+    <h2>¿LISTO PARA <em>ARRANCAR?</em></h2>
+    <p>Crea tu cuenta y obtén acceso a tarifas exclusivas y reservas prioritarias.</p>
+    <div class="cta-btns">
+      <button class="btn-primary" style="padding:14px 36px; font-size:16px;" (click)="goToRegister()">Crear cuenta gratis</button>
+      <button class="btn-ghost" style="padding:14px 36px; font-size:16px;" (click)="goToLogin()">Ya tengo cuenta</button>
+    </div>
+  </div>
+
+
+
+  <script>
+    // ─────────────────────────────────────────────
+    // CONFIGURACIÓN — APUNTA A TU API REAL
+    // ─────────────────────────────────────────────
+    const API_BASE = 'https://localhost:7291/api/v1';
+    let TOKEN = null; // Se setea después del login
+    let todasVehiculos = [];
+    let todasCategorias = [];
+
+    // SVG de coche por categoría
+    const CAR_SVGS = {
+      default: `<svg class="car-svg" viewBox="0 0 200 80" fill="none">
+        <rect x="20" y="30" width="160" height="35" rx="8" fill="#1e1e35"/>
+        <path d="M40 30 Q50 10 80 10 L120 10 Q150 10 160 30Z" fill="#252540"/>
+        <circle cx="55" cy="65" r="13" fill="#0a0a15" stroke="#6c63ff" stroke-width="2.5"/>
+        <circle cx="55" cy="65" r="6" fill="#6c63ff" opacity="0.4"/>
+        <circle cx="145" cy="65" r="13" fill="#0a0a15" stroke="#6c63ff" stroke-width="2.5"/>
+        <circle cx="145" cy="65" r="6" fill="#6c63ff" opacity="0.4"/>
+        <rect x="85" y="13" width="30" height="17" rx="3" fill="#1a1a3a" opacity="0.7"/>
+        <rect x="42" y="13" width="25" height="16" rx="3" fill="#1a1a3a" opacity="0.7"/>
+        <rect x="133" y="13" width="25" height="16" rx="3" fill="#1a1a3a" opacity="0.7"/>
+        <rect x="20" y="42" width="10" height="8" rx="2" fill="#00e5cc" opacity="0.8"/>
+        <rect x="170" y="42" width="10" height="8" rx="2" fill="#ff6060" opacity="0.6"/>
+      </svg>`,
+      suv: `<svg class="car-svg" viewBox="0 0 200 85" fill="none">
+        <rect x="15" y="28" width="170" height="42" rx="6" fill="#1e1e35"/>
+        <path d="M35 28 Q42 6 75 6 L130 6 Q162 6 168 28Z" fill="#252540"/>
+        <circle cx="52" cy="70" r="14" fill="#0a0a15" stroke="#6c63ff" stroke-width="2.5"/>
+        <circle cx="52" cy="70" r="6" fill="#6c63ff" opacity="0.4"/>
+        <circle cx="150" cy="70" r="14" fill="#0a0a15" stroke="#6c63ff" stroke-width="2.5"/>
+        <circle cx="150" cy="70" r="6" fill="#6c63ff" opacity="0.4"/>
+        <rect x="80" y="9" width="40" height="19" rx="3" fill="#1a1a3a" opacity="0.8"/>
+        <rect x="38" y="9" width="32" height="18" rx="3" fill="#1a1a3a" opacity="0.7"/>
+        <rect x="130" y="9" width="32" height="18" rx="3" fill="#1a1a3a" opacity="0.7"/>
+        <rect x="15" y="40" width="12" height="10" rx="2" fill="#00e5cc" opacity="0.8"/>
+        <rect x="173" y="40" width="12" height="10" rx="2" fill="#ff6060" opacity="0.6"/>
+      </svg>`,
+    };
+
+    function getCarSvg(categoria) {
+      const cat = (categoria || '').toLowerCase();
+      if (cat.includes('suv') || cat.includes('pick') || cat.includes('van')) return CAR_SVGS.suv;
+      return CAR_SVGS.default;
+    }
+
+    function getBadge(estado) {
+      const mapa = {
+        'Disponible': ['badge-disponible', 'Disponible'],
+        'Reservado': ['badge-reservado', 'Reservado'],
+        'Mantenimiento': ['badge-mant', 'En mantenimiento'],
+      };
+      return mapa[estado] || ['badge-disponible', estado || 'Disponible'];
+    }
+
+    // ─────────────────────────────────────────────
+    // TOKEN: obtener del login (modo demo: mock)
+    // ─────────────────────────────────────────────
+    async function getToken() {
+      if (TOKEN) return TOKEN;
+      try {
+        const res = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ correo: 'admin@booking.com', password: '123456' })
+        });
+        const data = await res.json();
+        TOKEN = data?.Data?.Token;
+        return TOKEN;
+      } catch { return null; }
+    }
+
+    function authHeaders(token) {
+      return token ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' } : {};
+    }
+
+    // ─────────────────────────────────────────────
+    // CARGA DE DATOS DESDE LA API
+    // ─────────────────────────────────────────────
+    async function cargarDatos() {
+      const token = await getToken();
+      const headers = authHeaders(token);
+
+      // Carga paralela
+      const [vehiculosRes, sucursalesRes, categoriasRes] = await Promise.allSettled([
+        fetch(`${API_BASE}/vehiculos`, { headers }),
+        fetch(`${API_BASE}/sucursales`, { headers }),
+        fetch(`${API_BASE}/categorias-vehiculo`, { headers }),
+      ]);
+
+      // VEHÍCULOS
+      if (vehiculosRes.status === 'fulfilled' && vehiculosRes.value.ok) {
+        const data = await vehiculosRes.value.json();
+        todasVehiculos = data?.Data || [];
+        renderVehiculos(todasVehiculos);
+        document.getElementById('stat-vehiculos').textContent =
+          todasVehiculos.filter(v => v.VEH_estado === 'Disponible').length;
+      } else {
+        renderError('vehicles-grid', 'No se pudieron cargar los vehículos.');
+      }
+
+      // SUCURSALES
+      if (sucursalesRes.status === 'fulfilled' && sucursalesRes.value.ok) {
+        const data = await sucursalesRes.value.json();
+        const sucursales = data?.Data || [];
+        renderSucursales(sucursales);
+        const sel = document.getElementById('sel-sucursal');
+        sel.innerHTML = '<option value="">Selecciona sucursal</option>' +
+          sucursales.map(s => `<option value="${s.SUC_id}">${s.SUC_nombre} — ${s.SUC_ciudad}</option>`).join('');
+        document.getElementById('stat-sucursales').textContent = sucursales.length;
+      }
+
+      // CATEGORÍAS
+      if (categoriasRes.status === 'fulfilled' && categoriasRes.value.ok) {
+        const data = await categoriasRes.value.json();
+        todasCategorias = data?.Data || [];
+        renderCategoriaPills(todasCategorias);
+        document.getElementById('stat-categorias').textContent = todasCategorias.length;
+      }
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER VEHÍCULOS
+    // ─────────────────────────────────────────────
+    function renderVehiculos(vehiculos) {
+      const grid = document.getElementById('vehicles-grid');
+      if (!vehiculos.length) {
+        grid.innerHTML = `<div class="error-state">
+          <div class="error-icon">🚗</div>
+          <h3>Sin vehículos disponibles</h3>
+          <p>No hay vehículos que coincidan con tu búsqueda.</p>
+        </div>`;
+        return;
+      }
+      grid.innerHTML = vehiculos.map((v, i) => {
+        const [badgeClass, badgeLabel] = getBadge(v.VEH_estado);
+        const cat = todasCategorias.find(c => c.CAT_id === v.CAT_id);
+        const catNombre = cat?.CAT_nombre || 'Vehículo';
+        const precio = cat?.CAT_costoBase || '—';
+        const pasajeros = cat?.CAT_capacidadPasajeros || '—';
+        const maletas = cat?.CAT_capacidadMaletas || '—';
+        const transmision = cat?.CAT_tipoTransmision || '—';
+        const disponible = v.VEH_estado === 'Disponible';
+
+        return `<div class="v-card" style="animation-delay:${i * 0.07}s">
+          <div class="v-card-img">
+            <span class="v-badge ${badgeClass}">${badgeLabel}</span>
+            ${getCarSvg(catNombre)}
+          </div>
+          <div class="v-card-body">
+            <div class="v-card-cat">${catNombre}</div>
+            <div class="v-card-name">${v.VEH_modelo}</div>
+            <div class="v-card-meta">${v.VEH_anio} · ${v.VEH_color} · ${v.VEH_placa}</div>
+            <div class="v-card-specs">
+              <div class="spec"><span class="spec-icon">👤</span> ${pasajeros} pas.</div>
+              <div class="spec"><span class="spec-icon">🧳</span> ${maletas} maletas</div>
+              <div class="spec"><span class="spec-icon">⚙️</span> ${transmision}</div>
+              <div class="spec"><span class="spec-icon">📍</span> ${v.VEH_kilometraje?.toLocaleString()} km</div>
+            </div>
+            <div class="v-card-footer">
+              <div class="v-price">
+                <div class="v-price-amount">$${precio}</div>
+                <div class="v-price-unit">por día</div>
+              </div>
+              <button class="btn-reservar" ${disponible ? '' : 'disabled'}
+                (click)="reservar('${v.VEH_id}', '${v.VEH_modelo}')">
+                ${disponible ? 'Reservar' : 'No disponible'}
+              </button>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER SUCURSALES
+    // ─────────────────────────────────────────────
+    function renderSucursales(sucursales) {
+      document.getElementById('sucursales-grid').innerHTML = sucursales.map(s => `
+        <div class="suc-card">
+          <div class="suc-icon">📍</div>
+          <div class="suc-name">${s.SUC_nombre}</div>
+          <div class="suc-city">${s.SUC_ciudad}</div>
+          <div class="suc-addr">${s.SUC_direccion}</div>
+        </div>
+      `).join('');
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER PILLS DE CATEGORÍA
+    // ─────────────────────────────────────────────
+    function renderCategoriaPills(categorias) {
+      const pills = document.getElementById('filter-pills');
+      categorias.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'pill';
+        btn.textContent = cat.CAT_nombre;
+        btn.addEventListener('click', () => filtrarCategoria(cat.CAT_id, btn));
+        pills.appendChild(btn);
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // FILTRAR POR CATEGORÍA
+    // ─────────────────────────────────────────────
+    function filtrarCategoria(catId, btn) {
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const filtrados = catId
+        ? todasVehiculos.filter(v => v.CAT_id === catId)
+        : todasVehiculos;
+      renderVehiculos(filtrados);
+    }
+
+    // ─────────────────────────────────────────────
+    // BUSCAR
+    // ─────────────────────────────────────────────
+    function buscarVehiculos() {
+      const sucursal = document.getElementById('sel-sucursal').value;
+      const filtrados = sucursal
+        ? todasVehiculos.filter(v => v.SUC_id === sucursal)
+        : todasVehiculos;
+      renderVehiculos(filtrados);
+      document.getElementById('vehiculos').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ─────────────────────────────────────────────
+    // ERROR STATE
+    // ─────────────────────────────────────────────
+    function renderError(containerId, msg) {
+      document.getElementById(containerId).innerHTML = `
+        <div class="error-state">
+          <div class="error-icon">⚠️</div>
+          <h3>Error de conexión</h3>
+          <p>${msg}</p>
+          <p style="margin-top:8px;font-size:12px;color:var(--text3);">Verifica que el backend esté corriendo y el CORS configurado.</p>
+        </div>`;
+    }
+
+    // ─────────────────────────────────────────────
+    // NAVEGACIÓN (en Angular serían routerLink)
+    // ─────────────────────────────────────────────
+    function reservar(id, modelo) {
+      alert(`→ Navega a /reservar/${id}\nVehículo: ${modelo}\n\n(En Angular: router.navigate(['/reservar', id]))`);
+    }
+    function goToLogin() { alert('→ router.navigate([\'/login\'])'); }
+    function goToRegister() { alert('→ router.navigate([\'/registro\'])'); }
+    function verTodos() { document.getElementById('vehiculos').scrollIntoView({ behavior: 'smooth' }); }
+
+    // Fechas mínimas
+    const hoy = new Date().toISOString().split('T')[0];
+    document.getElementById('inp-retiro').min = hoy;
+    document.getElementById('inp-entrega').min = hoy;
+    document.getElementById('inp-retiro').value = hoy;
+    const manana = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+    document.getElementById('inp-entrega').value = manana;
+
+    // ─────────────────────────────────────────────
+    // INIT
+    // ─────────────────────────────────────────────
+    cargarDatos();
+  </script>
+  <app-footer></app-footer>
+</body>

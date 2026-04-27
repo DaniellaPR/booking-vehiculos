@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+
+<div class="wizard-container">
+  <div class="wizard-header">
+    <div class="step" [class.active]="step() === 1">1. Fechas</div>
+    <div class="step" [class.active]="step() === 2">2. Seguros y Extras</div>
+    <div class="step" [class.active]="step() === 3">3. Confirmar</div>
+  </div>
+
+  <div class="wizard-body">
+    @if (step() === 1) {
+    <div class="step-content">
+      <h2>Selecciona tus fechas</h2>
+      <input type="date">
+      <button (click)="next()">Siguiente</button>
+    </div>
+    }
+
+    @if (step() === 2) {
+    <div class="step-content">
+      <h2>Extras Adicionales</h2>
+      <label><input type="checkbox"> GPS (+ $5/día)</label>
+      <button (click)="prev()">Atrás</button>
+      <button (click)="next()">Siguiente</button>
+    </div>
+    }
+
+    @if (step() === 3) {
+    <div class="step-content">
+      <h2>Resumen de tu Reserva</h2>
+      <p>Verifica los datos antes de confirmar.</p>
+      <button (click)="prev()">Atrás</button>
+      <button (click)="finalizar()">Confirmar Reserva</button>
+    </div>
+    }
+  </div>
+</div>
