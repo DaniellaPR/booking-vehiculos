@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Build with dotnet
-        run: dotnet build ./backend/Microservicio.Coche.Api/Microservicio.Coche.Api.csproj --configuration Release
+        run: dotnet build ./backend/Microservicio.Coche.API/Microservicio.Coche.API.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./backend/Microservicio.Coche.Api/Microservicio.Coche.Api.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish ./backend/Microservicio.Coche.API/Microservicio.Coche.API.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -62,4 +62,3 @@ jobs:
           app-name: 'booking-coche-api'
           slot-name: 'Production'
           package: .
-          
