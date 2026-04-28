@@ -5,6 +5,7 @@ using Microservicios.Coche.DataAccess.Context;
 using Microservicios.Coche.DataManagement.Interfaces;
 using Microservicios.Coche.DataManagement.Services;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace Microservicios.Coche.Api.Extensions;
 
