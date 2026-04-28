@@ -7,31 +7,30 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        // Esto evita que .NET cambie las mayúsculas de tus atributos de la BD
+        // Evita que .NET convierta tus nombres de BD a minúsculas (camelCase)
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     });
 
-// Configuraciones personalizadas de tus carpetas /Extensions
+// Configuraciones de tus carpetas /Extensions
 builder.Services.AddCustomApiVersioning();
 builder.Services.AddCustomAuthentication(builder.Configuration);
 builder.Services.AddCustomSwagger();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddAuthorization();
 
-// ── CONFIGURACIÓN DE CORS ──────────────────────────────────────────────────
-// Agregamos la URL de tu frontend de Azure para que la API le de permiso
+// ── CONFIGURACIÓN DE CORS (EL PUENTE) ──────────────────────────────────────
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AngularDev", policy =>
     {
         policy.WithOrigins(
-                "http://localhost:4200",   // Local HTTP
-                "https://localhost:4200",  // Local HTTPS
-                "https://booking-vehiculos-web.azurestaticapps.net" // <--- REEMPLAZA CON TU URL DE AZURE FRONTEND
+                "http://localhost:4200", 
+                "https://localhost:4200",
+                "https://black-grass-06878cb0f.7.azurestaticapps.net" // <--- ¡REEMPLAZA CON LA URL DE TU WEB DE AZURE!
               )
               .AllowAnyHeader()
               .AllowAnyMethod()
-              .AllowCredentials(); // Necesario para enviar tokens JWT
+              .AllowCredentials(); 
     });
 });
 
@@ -40,19 +39,16 @@ var app = builder.Build();
 // Middleware global de captura de errores
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-// Habilitar Swagger siempre en Desarrollo (Azure tiene una variable para esto)
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(options => {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-        options.RoutePrefix = "swagger"; // La URL será .../swagger
-    });
-}
+// Habilitar Swagger siempre (útil para que el profe lo vea en la nube)
+app.UseSwagger();
+app.UseSwaggerUI(options => {
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = "swagger"; 
+});
 
 app.UseHttpsRedirection();
 
-// EL ORDEN ES VITAL: CORS siempre antes que Auth
+// EL ORDEN ES VITAL: CORS antes que Auth
 app.UseCors("AngularDev");
 
 app.UseAuthentication();
