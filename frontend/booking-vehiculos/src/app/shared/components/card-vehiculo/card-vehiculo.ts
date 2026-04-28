@@ -7,8 +7,11 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './card-vehiculo.html',
-  styleUrl: './card-vehiculo.scss',
+  styleUrls: ['./card-vehiculo.scss'], // Ojo: es styleUrls con 's' al final
 })
 export class CardVehiculo {
   @Input() vehiculo: any; // Esto es vital para recibir la info de la BD
+
+  // 💥 ESTA ES LA LÍNEA QUE FALTABA:
+  @Input() precioBase: number = 0;
 }

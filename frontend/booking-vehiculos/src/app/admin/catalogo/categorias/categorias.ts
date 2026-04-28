@@ -19,7 +19,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   cargarCategorias() {
-    this.http.get<any>(`${environment.apiUrl}/categorias-vehiculo`).subscribe(res => {
+    this.http.get<any>(`${environment.apiUrl}/api/v1/categorias-vehiculo`).subscribe(res => {
       this.categorias.set(res.Data || res);
     });
   }

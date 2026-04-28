@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Microservicios.Coche.Api.Controllers.V1.AuthController\u002BMockLoginRequest",
+        "Type": "Microservicios.Coche.Business.DTOs.Auth.LoginRequest",
         "IsRequired": true
       }
     ],
@@ -967,6 +967,41 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Microservicios.Coche.Api.Controllers.V1.VehiculosController",
+    "Method": "Eliminar",
+    "RelativePath": "api/v1/vehiculos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Microservicios.Coche.Api.Models.Common.ApiResponse\u00601[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microservicios.Coche.Api.Models.Common.ApiErrorResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
   },
   {
     "ContainingType": "Microservicio.Coche.API.Controllers.WeatherForecastController",

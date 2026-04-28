@@ -19,7 +19,7 @@ export class ExtrasComponent implements OnInit {
   }
 
   cargarExtras() {
-    this.http.get<any>(`${environment.apiUrl}/extras-adicionales`).subscribe(res => {
+    this.http.get<any>(`${environment.apiUrl}/api/v1/extras-adicionales`).subscribe(res => {
       this.extras.set(res.Data || res);
     });
   }

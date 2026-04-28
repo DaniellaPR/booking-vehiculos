@@ -1,3 +1,4 @@
+<!-- app/app/marketplace/busqueda/busqueda.html -->
 <app-navbar></app-navbar>
 
 <main class="search-container">
@@ -5,10 +6,12 @@
     <h3>Filtros</h3>
     <div class="filter-group">
       <label>Categoría</label>
-      <select>
-        <option value="">Todas</option>
-        @for (cat of categorias(); track cat.CAT_id) {
-        <option [value]="cat.CAT_id">{{ cat.CAT_nombre }}</option>
+      <select (change)="onCategoriaChange($event)">
+        <option value="">Todas las categorías</option>
+        @for (cat of categorias(); track cat.caT_id || cat.CAT_id) {
+        <option [value]="cat.caT_id || cat.CAT_id">
+          {{ cat.caT_nombre || cat.CAT_nombre }}
+        </option>
         }
       </select>
     </div>
@@ -16,18 +19,18 @@
 
   <section class="results">
     <h2>Vehículos Disponibles</h2>
+
     @if (vehiculos().length === 0) {
     <div class="loader">Cargando vehículos...</div>
     } @else {
     <div class="grid-results">
-      @for (v of vehiculos(); track v.VEH_id) {
-      <div class="card-v">
-        <div class="card-img">🚗</div>
-        <div class="card-body">
-          <h4>{{ v.VEH_modelo }}</h4>
-          <p>Año: {{ v.VEH_anio }}</p>
-          <button class="btn btn-primary" (click)="verDetalle(v.VEH_id)">Ver Detalles</button>
-        </div>
+      @for (v of vehiculosFiltrados(); track v.veH_id || v.VEH_id) {
+      <app-card-vehiculo [vehiculo]="v"
+                         [precioBase]="getPrecioVehiculo(v)">
+      </app-card-vehiculo>
+      } @empty {
+      <div style="padding: 20px; color: var(--text2);">
+        No hay vehículos para esta categoría.
       </div>
       }
     </div>

@@ -1,0 +1,195 @@
+.detail-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  color: var(--text);
+}
+
+.detail-left {
+  flex: 1;
+}
+
+.detail-right {
+  width: 380px;
+  position: sticky;
+  top: 100px; /* Para que baje contigo al hacer scroll */
+}
+
+.car-header {
+  margin-bottom: 24px;
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    margin: 0 0 8px 0;
+    line-height: 1;
+  }
+}
+
+.badge-primary {
+  background: rgba(108, 99, 255, 0.15);
+  color: var(--violet);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.car-image-box {
+  width: 100%;
+  height: 400px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  .image-placeholder {
+    font-size: 24px;
+    color: var(--text2);
+    opacity: 0.5;
+  }
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.spec-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  .icon {
+    font-size: 24px;
+  }
+
+  .spec-info {
+    display: flex;
+    flex-direction: column;
+
+    .lbl {
+      font-size: 11px;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .val {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+  }
+}
+
+/* Tarjeta Derecha (Booking) */
+.booking-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.price-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  .price-amount {
+    display: flex;
+    align-items: baseline;
+    color: var(--cyan);
+
+    .currency {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .amount {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .period {
+      font-size: 16px;
+      color: var(--text2);
+      margin-left: 4px;
+    }
+  }
+
+  .price-tax {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 8px;
+  }
+}
+
+.benefits-list {
+  margin-bottom: 32px;
+
+  .benefit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 12px;
+
+    span {
+      color: #34d399;
+      font-weight: bold;
+    }
+  }
+}
+
+.btn-reserve-giant {
+  width: 100%;
+  padding: 18px;
+  background: var(--violet);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #7c74ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(108,99,255,0.4);
+  }
+}
+
+.secure-msg {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .detail-container {
+    flex-direction: column;
+  }
+
+  .detail-right {
+    width: 100%;
+    position: static;
+  }
+}

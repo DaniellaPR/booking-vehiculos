@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service'; // Ajusta la ruta a tu auth.service
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,14 +11,32 @@ import { AuthService } from '../../../core/services/auth.service'; // Ajusta la 
   styleUrls: ['./navbar.scss']
 })
 export class NavbarComponent {
-  authService = inject(AuthService);
-  router = inject(Router);
+  public authService = inject(AuthService);
+  public router = inject(Router);
 
-  // Observable o signal que indica si está logueado
-  isLoggedIn$ = this.authService.isLoggedIn$;
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 
-  cerrarSesion() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+  // Agrega este nuevo método:
+  goToRegistro() {
+    this.router.navigate(['/registro']);
+  }
+
+  goToDashboard() {
+    this.router.navigate(['/admin/dashboard']);
+  }
+
+  logout() {
+    // 1. Limpieza silenciosa y manual (para evitar que un service dispare un window.location.reload)
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    sessionStorage.clear();
+
+    // 2. Navegación pura de Angular destruyendo el historial actual (sin recargar la pestaña)
+    this.router.navigateByUrl('/login', { replaceUrl: true }).then(() => {
+      // Solo recargamos el estado de auth internamente
+      this.authService.logout();
+    });
   }
 }

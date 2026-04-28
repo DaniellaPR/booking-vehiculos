@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.Business\\Microservicio.Coche.Business.csproj": {}
+    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.Business\\Microservicio.Coche.Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.Business\\Microservicio.Coche.Business.csproj": {
+    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.Business\\Microservicio.Coche.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.Business\\Microservicio.Coche.Business.csproj",
+        "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.Business\\Microservicio.Coche.Business.csproj",
         "projectName": "Microservicio.Coche.Business",
-        "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.Business\\Microservicio.Coche.Business.csproj",
+        "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.Business\\Microservicio.Coche.Business.csproj",
         "packagesPath": "C:\\Users\\pdani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.Business\\obj\\",
+        "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj": {
-                "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj"
+              "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj": {
+                "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj"
               }
             }
           }
@@ -349,14 +349,14 @@
         }
       }
     },
-    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj": {
+    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
         "projectName": "Microservicio.Coche.DataAccess",
-        "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+        "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
         "packagesPath": "C:\\Users\\pdani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -702,14 +702,14 @@
         }
       }
     },
-    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj": {
+    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
+        "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
         "projectName": "Microservicio.Coche.DataManagement",
-        "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
+        "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
         "packagesPath": "C:\\Users\\pdani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataManagement\\obj\\",
+        "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -731,8 +731,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj"
+              "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj"
               }
             }
           }

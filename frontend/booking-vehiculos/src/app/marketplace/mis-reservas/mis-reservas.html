@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+
+<main class="mis-reservas-container">
+  <div class="page-header">
+    <div class="header-icon">📋</div>
+    <div>
+      <h1 class="page-title">Mis Reservas</h1>
+      <p class="page-sub">Hola, <strong>{{ nombre }}</strong>. Aquí puedes ver el historial de tus alquileres.</p>
+    </div>
+  </div>
+
+  @if (isLoading()) {
+  <div class="loading-state">
+    <div class="spinner-big"></div>
+    <p>Cargando tus reservas...</p>
+  </div>
+  }
+
+  @else if (errorMsg()) {
+  <div class="error-state">
+    <div style="font-size:40px;">⚠️</div>
+    <p>{{ errorMsg() }}</p>
+    <button class="btn-retry" (click)="cargarReservas()">Reintentar</button>
+  </div>
+  }
+
+  @else if (reservas().length === 0) {
+  <div class="empty-state">
+    <div class="empty-icon">🚗</div>
+    <h3>Aún no tienes reservas</h3>
+    <p>Cuando realices una reserva, aparecerá aquí.</p>
+    <button class="btn-primary" (click)="router.navigate(['/buscar'])">Explorar vehículos</button>
+  </div>
+  }
+
+  @else {
+  <div class="reservas-grid">
+    @for (r of reservas(); track r.RES_id || r.rES_id) {
+    <div class="reserva-card">
+      <div class="card-top">
+        <div class="card-id">
+          <span class="label">Reserva</span>
+          <span class="mono">#{{ (r.RES_id || r.rES_id || '').slice(0,8).toUpperCase() }}</span>
+        </div>
+        <span class="badge" [ngClass]="getBadgeClass(r.RES_estado || r.rES_estado)">
+          {{ r.RES_estado || r.rES_estado || 'Pendiente' }}
+        </span>
+      </div>
+
+      <div class="card-dates">
+        <div class="date-block">
+          <span class="date-label">🚀 Retiro</span>
+          <span class="date-val">{{ formatFecha(r.RES_fechaRetiro || r.rES_fechaRetiro) }}</span>
+        </div>
+        <div class="date-arrow">→</div>
+        <div class="date-block">
+          <span class="date-label">🏁 Entrega</span>
+          <span class="date-val">{{ formatFecha(r.RES_fechaEntrega || r.rES_fechaEntrega) }}</span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="created-at">Creada: {{ formatFecha(r.RES_fechaCreacion || r.rES_fechaCreacion) }}</span>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</main>
+
+<app-footer></app-footer>

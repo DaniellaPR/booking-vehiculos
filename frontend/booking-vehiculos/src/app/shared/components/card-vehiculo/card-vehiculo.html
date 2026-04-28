@@ -11,7 +11,7 @@
     </div>
     <div class="price-row">
       <div class="price">
-        ${{ vehiculo.VEH_precioPorDia ?? '—' }}<small>/día</small>
+        <span class="price">${{ precioBase | number:'1.2-2' }} <small>/ día</small></span>
       </div>
       <a class="btn-reservar" [routerLink]="['/vehiculo', vehiculo.VEH_id]">Ver</a>
     </div>

@@ -1,0 +1,163 @@
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <div class="page-title">USUARIOS <span>& ROLES</span></div>
+  <div class="page-actions">
+    <button class="btn-refresh" (click)="cargar()">↻ Actualizar</button>
+    <button class="btn-primary" (click)="showCrear = !showCrear">
+      {{ showCrear ? '✕ Cancelar' : '+ Nuevo usuario' }}
+    </button>
+  </div>
+</div>
+
+<!-- ── TOAST MSG ── -->
+@if (globalMsg()) {
+<div class="toast" [class.toast-ok]="globalMsg()!.tipo === 'ok'" [class.toast-err]="globalMsg()!.tipo === 'err'">
+  {{ globalMsg()!.tipo === 'ok' ? '✅' : '❌' }} {{ globalMsg()!.text }}
+</div>
+}
+
+<!-- ── FORMULARIO CREAR ── -->
+@if (showCrear) {
+<div class="panel panel-crear">
+  <div class="panel-header">
+    <div class="panel-title">Crear nuevo usuario del sistema</div>
+    <div class="panel-sub">Puede crear Administradores, Vendedores o Clientes</div>
+  </div>
+  <div class="panel-body">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" [(ngModel)]="nuevoEmail" placeholder="usuario@dominio.com" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label>Contraseña temporal</label>
+        <input type="password" [(ngModel)]="nuevoPassword" placeholder="Mínimo 8 caracteres" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label>Rol asignado</label>
+        <select [(ngModel)]="nuevoRol" class="form-select">
+          @for (r of roles(); track r.ROL_id || r.rOL_id) {
+          <option [value]="r.ROL_id || r.rOL_id">{{ r.ROL_nombre || r.rOL_nombre }}</option>
+          }
+        </select>
+      </div>
+    </div>
+    @if (errorCrear) {
+    <div class="error-inline">⚠️ {{ errorCrear }}</div>
+    }
+    <div class="form-actions">
+      <button class="btn-primary" (click)="crearUsuario()" [disabled]="isSaving()">
+        {{ isSaving() ? 'Creando...' : 'Crear usuario' }}
+      </button>
+    </div>
+  </div>
+</div>
+}
+
+<!-- ── FILTROS ── -->
+<div class="filtros-bar">
+  <input type="text" [(ngModel)]="filtroEmail" placeholder="🔍 Buscar por correo…" class="filtro-input" />
+  <select [(ngModel)]="filtroRol" class="filtro-select">
+    <option value="">Todos los roles</option>
+    @for (r of roles(); track r.ROL_id || r.rOL_id) {
+    <option [value]="r.ROL_id || r.rOL_id">{{ r.ROL_nombre || r.rOL_nombre }}</option>
+    }
+  </select>
+  <div class="filtro-count">{{ usuariosFiltrados.length }} usuario(s)</div>
+</div>
+
+<!-- ── TABLA ── -->
+@if (isLoading()) {
+<div class="panel"><div class="panel-body" style="text-align:center;padding:48px;color:var(--text2);">Cargando usuarios…</div></div>
+}
+
+@else {
+<div class="panel">
+  <div class="panel-body" style="padding:0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Correo</th>
+          <th>Rol actual</th>
+          <th>Creado</th>
+          <th style="text-align:right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (usuariosFiltrados.length === 0) {
+        <tr><td colspan="4" style="text-align:center;padding:32px;color:var(--text2)">Sin resultados</td></tr>
+        }
+
+        @for (u of usuariosFiltrados; track u.USU_id || u.uSU_id) {
+        <tr [class.row-self]="(u.USU_email || u.uSU_email) === '{{auth.getEmail()}}'">
+          <td>
+            <div class="email-cell">
+              <span class="email-text">{{ u.USU_email || u.uSU_email }}</span>
+              @if ((u.USU_email || u.uSU_email) === '{{auth.getEmail()}}') {
+              <span class="yo-badge">tú</span>
+              }
+            </div>
+          </td>
+
+          <!-- Rol: modo visualización o edición inline -->
+          <td>
+            @if (!u._editando) {
+            <span class="rol-badge" [ngClass]="getRolClass(u._rolNombre || '')">
+              {{ u._rolNombre }}
+            </span>
+            } @else {
+            <select [(ngModel)]="u._rolSeleccionado" class="form-select form-select-sm">
+              @for (r of roles(); track r.ROL_id || r.rOL_id) {
+              <option [value]="r.ROL_id || r.rOL_id">{{ r.ROL_nombre || r.rOL_nombre }}</option>
+              }
+            </select>
+            }
+          </td>
+
+          <td class="text-muted">{{ formatFecha(u.USU_fechaCreacion || u.uSU_fechaCreacion || '') }}</td>
+
+          <td>
+            <div class="acciones">
+              @if (!u._editando) {
+              <!-- Botón cambiar rol -->
+              <button class="btn-icon btn-edit" title="Cambiar rol" (click)="iniciarEdicion(u)">✏️</button>
+              <!-- No se puede eliminar a sí mismo -->
+              @if ((u.USU_email || u.uSU_email) !== '{{auth.getEmail()}}') {
+              <button class="btn-icon btn-del" title="Eliminar usuario" (click)="confirmarEliminar(u)">🗑️</button>
+              }
+              } @else {
+              <button class="btn-save" (click)="guardarRol(u)" [disabled]="isSaving()">
+                {{ isSaving() ? '…' : '✔ Guardar' }}
+              </button>
+              <button class="btn-cancel" (click)="cancelarEdicion(u)">✕</button>
+              }
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+}
+
+<!-- ── MODAL CONFIRMAR ELIMINAR ── -->
+@if (usuarioAEliminar) {
+<div class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-icon">⚠️</div>
+    <div class="modal-title">¿Eliminar usuario?</div>
+    <div class="modal-body">
+      Se eliminará permanentemente el acceso de<br>
+      <strong>{{ usuarioAEliminar.USU_email || usuarioAEliminar.uSU_email }}</strong>.<br>
+      Esta acción no se puede deshacer.
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel-modal" (click)="cancelarEliminar()">Cancelar</button>
+      <button class="btn-danger-modal" (click)="eliminar()" [disabled]="isSaving()">
+        {{ isSaving() ? 'Eliminando…' : 'Sí, eliminar' }}
+      </button>
+    </div>
+  </div>
+</div>
+}

@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MockLoginRequest"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MockLoginRequest"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MockLoginRequest"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             }
           }
@@ -1606,6 +1606,64 @@
             "description": "OK"
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Vehiculos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StringApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/WeatherForecast": {
@@ -2015,7 +2073,9 @@
         "required": [
           "CLI_apellidos",
           "CLI_cedula",
-          "CLI_nombres"
+          "CLI_correo",
+          "CLI_nombres",
+          "Password"
         ],
         "type": "object",
         "properties": {
@@ -2040,6 +2100,15 @@
             "type": "string",
             "format": "tel",
             "nullable": true
+          },
+          "CLI_correo": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "Password": {
+            "minLength": 1,
+            "type": "string"
           },
           "CLI_usuarioCreacion": {
             "maxLength": 50,
@@ -2293,7 +2362,7 @@
         },
         "additionalProperties": false
       },
-      "MockLoginRequest": {
+      "LoginRequest": {
         "type": "object",
         "properties": {
           "Correo": {

@@ -10,7 +10,7 @@ namespace Microservicios.Coche.Api.Controllers.V1;
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/categorias-vehiculo")]
-[Authorize(Roles = "ADMIN,VENDEDOR")]  // Default: solo admin/vendedor
+[AllowAnonymous]
 public class CategoriasVehiculoController : ControllerBase
 {
     private readonly ICategoriaVehiculoService _categoriaService;

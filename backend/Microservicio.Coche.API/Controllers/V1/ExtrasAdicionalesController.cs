@@ -11,7 +11,7 @@ namespace Microservicios.Coche.Api.Controllers.V1;
 [ApiVersion("1.0")]
 // 🚨 ESTA ES LA LÍNEA CLAVE: Definimos la ruta explícitamente con guión
 [Route("api/v{version:apiVersion}/extras-adicionales")]
-[Authorize(Roles = "ADMIN,VENDEDOR")]
+[AllowAnonymous]
 public class ExtraAdicionalesController : ControllerBase
 {
     private readonly IExtraAdicionalService _extraAdicionalService;

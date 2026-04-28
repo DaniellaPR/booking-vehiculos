@@ -8,8 +8,22 @@
       <a routerLink="/admin/dashboard" routerLinkActive="active"><span>📊</span> Dashboard</a>
       <a routerLink="/admin/vehiculos" routerLinkActive="active"><span>🚗</span> Gestión de Flota</a>
       <a routerLink="/admin/reservas" routerLinkActive="active"><span>📅</span> Reservas</a>
-      <div class="menu-divider">Mantenimiento</div>
+
+      <div class="menu-divider">Configuración</div>
       <a routerLink="/admin/sucursales" routerLinkActive="active"><span>🏢</span> Sucursales</a>
+      <a routerLink="/admin/clientes" routerLinkActive="active"><span>👥</span> Clientes</a>
+
+      <!-- Solo visible para ADMINISTRADOR -->
+      @if (authService.isAdmin()) {
+      <div class="menu-divider">Administración</div>
+      <a routerLink="/admin/usuarios" routerLinkActive="active"><span>🔐</span> Usuarios & Roles</a>
+      }
+
+      <div class="menu-divider">Catálogo</div>
+      <a routerLink="/admin/catalogo/categorias" routerLinkActive="active"><span>🏷️</span> Categorías</a>
+      <a routerLink="/admin/catalogo/seguros" routerLinkActive="active"><span>🛡️</span> Seguros</a>
+      <a routerLink="/admin/catalogo/extras" routerLinkActive="active"><span>➕</span> Extras</a>
+      <a routerLink="/admin/catalogo/tarifas" routerLinkActive="active"><span>💰</span> Tarifas</a>
     </nav>
 
     <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>

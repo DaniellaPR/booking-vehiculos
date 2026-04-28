@@ -19,7 +19,7 @@ export class SegurosComponent implements OnInit {
   }
 
   cargarSeguros() {
-    this.http.get<any>(`${environment.apiUrl}/seguros`).subscribe(res => {
+    this.http.get<any>(`${environment.apiUrl}/api/v1/seguros`).subscribe(res => {
       this.seguros.set(res.Data || res);
     });
   }

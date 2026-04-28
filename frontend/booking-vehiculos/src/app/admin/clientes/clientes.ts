@@ -21,7 +21,7 @@ export class ClientesComponent implements OnInit {
 
   cargarClientes() {
     this.isLoading.set(true);
-    this.http.get<any>(`${environment.apiUrl}/clientes`).subscribe({
+    this.http.get<any>(`${environment.apiUrl}/api/v1/clientes`).subscribe({
       next: (res) => {
         this.clientes.set(res.Data || res);
         this.isLoading.set(false);

@@ -3580,11 +3580,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
       "projectName": "Microservicio.Coche.DataAccess",
-      "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+      "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
       "packagesPath": "C:\\Users\\pdani\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\obj\\",
+      "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

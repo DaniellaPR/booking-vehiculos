@@ -20,6 +20,15 @@ public class CrearClienteRequest
     [StringLength(20)]
     public string? CLI_telefono { get; set; }
 
+    // DATO CLAVE PARA EL LOGIN
+    [Required(ErrorMessage = "El correo electrónico es obligatorio para el inicio de sesión")]
+    [EmailAddress(ErrorMessage = "El formato del correo es inválido")]
+    public string CLI_correo { get; set; } = null!;
+
+    // DATO CLAVE PARA EL LOGIN
+    [Required(ErrorMessage = "La contraseña es obligatoria para el registro")]
+    public string Password { get; set; } = null!;
+
     [StringLength(50)]
     public string? CLI_usuarioCreacion { get; set; }
 }

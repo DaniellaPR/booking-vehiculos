@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7291/api/v1'
+  // QUITAR EL /api/v1 AL FINAL. DEBE QUEDAR SOLO EL PUERTO:
+  apiUrl: 'https://localhost:7291'
 };

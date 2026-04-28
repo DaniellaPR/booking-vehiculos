@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Microservicio.Coche.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1359003126272e05fc43054b2b86205a80fe4b81")]
 [assembly: System.Reflection.AssemblyProductAttribute("Microservicio.Coche.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Microservicio.Coche.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

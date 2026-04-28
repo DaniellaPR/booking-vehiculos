@@ -10,7 +10,7 @@ namespace Microservicios.Coche.Api.Controllers.V1;
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/seguros")]
-[Authorize(Roles = "ADMIN,VENDEDOR")]
+[AllowAnonymous]
 public class SegurosController : ControllerBase
 {
     private readonly ISeguroService _seguroService;

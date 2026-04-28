@@ -1,44 +1,82 @@
-<div class="admin-page">
-  <div class="page-header">
-    <div>
-      <h1>Sucursales y Agencias</h1>
-      <p>Administración de puntos de retiro y entrega a nivel nacional.</p>
+<div class="page-header">
+  <div>
+    <h1>Gestión de Sucursales</h1>
+    <p>Administración de agencias físicas disponibles para retiro y entrega.</p>
+  </div>
+  <button class="btn btn-primary" (click)="abrirModalNuevo()">+ Nueva Sucursal</button>
+</div>
+
+@if (isLoading()) {
+<div class="loader">Cargando sucursales...</div>
+} @else {
+<div class="table-card">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Nombre Agencia</th>
+        <th>Ciudad</th>
+        <th>Dirección</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (s of sucursales(); track $index) {
+      <tr>
+        <td><strong>{{ s.SUC_nombre || s.suC_nombre }}</strong></td>
+        <td>{{ s.SUC_ciudad || s.suC_ciudad }}</td>
+        <td>{{ s.SUC_direccion || s.suC_direccion }}</td>
+        <td>
+          <button class="btn-icon" title="Editar" (click)="abrirModalEditar(s)">✏️</button>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="4" style="text-align:center; color: var(--text2);">No hay sucursales registradas.</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+}
+
+@if (mostrarModal()) {
+<div class="modal-overlay" (click)="cerrarModal()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ modoEdicion() ? 'Editar Sucursal' : 'Nueva Sucursal' }}</h2>
+      <button class="modal-close" (click)="cerrarModal()">✕</button>
     </div>
-    <button class="btn-primary">+ Nueva Agencia</button>
-  </div>
 
-  <div class="stats-grid">
-    <div class="stat-mini"><span>Total:</span> <strong>{{ sucursales().length }}</strong></div>
-    <div class="stat-mini"><span>Activas:</span> <strong>{{ sucursales().length }}</strong></div>
-  </div>
+    <div class="modal-body">
+      @if (errorModal()) {
+      <div class="form-error-banner">{{ errorModal() }}</div>
+      }
+      <div class="form-grid">
+        <div class="form-group" style="grid-column: span 2;">
+          <label>Nombre de Sucursal *</label>
+          <input type="text" [(ngModel)]="form.SUC_nombre" placeholder="Ej: Agencia Aeropuerto" />
+        </div>
+        <div class="form-group">
+          <label>Ciudad *</label>
+          <input type="text" [(ngModel)]="form.SUC_ciudad" placeholder="Ej: Quito" />
+        </div>
+        <div class="form-group" style="grid-column: span 2;">
+          <label>Dirección Física *</label>
+          <input type="text" [(ngModel)]="form.SUC_direccion" placeholder="Ej: Av. Principal 123" />
+        </div>
+        <div class="form-group" style="grid-column: span 2;">
+          <label>Coordenadas (Opcional)</label>
+          <input type="text" [(ngModel)]="form.SUC_coordenadas" placeholder="Ej: -0.180653, -78.467838" />
+        </div>
+      </div>
+    </div>
 
-  <div class="table-container">
-    <table class="admin-table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Ciudad / Ubicación</th>
-          <th>Dirección Detallada</th>
-          <th>Contacto</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (s of sucursales(); track s.SUC_id) {
-        <tr>
-          <td><strong class="suc-name">{{ s.SUC_nombre }}</strong></td>
-          <td><span class="tag-geo">📍 {{ s.SUC_ciudad }}</span></td>
-          <td>{{ s.SUC_direccion }}</td>
-          <td>{{ s.SUC_telefono || 'Sin asignar' }}</td>
-          <td>
-            <div class="actions">
-              <button title="Editar">✏️</button>
-              <button title="Ver Flota">🚗</button>
-            </div>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+      <button class="btn btn-primary" (click)="guardar()" [disabled]="guardando()">
+        {{ guardando() ? 'Guardando...' : 'Guardar' }}
+      </button>
+    </div>
   </div>
 </div>
+}

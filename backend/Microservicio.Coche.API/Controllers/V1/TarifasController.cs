@@ -10,7 +10,7 @@ namespace Microservicios.Coche.Api.Controllers.V1;
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/tarifas")]
-[Authorize]
+[AllowAnonymous]
 public class TarifasController : ControllerBase
 {
     private readonly ITarifaService _tarifaService;

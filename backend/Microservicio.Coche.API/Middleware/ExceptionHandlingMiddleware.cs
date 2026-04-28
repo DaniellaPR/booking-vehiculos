@@ -34,6 +34,10 @@ public class ExceptionHandlingMiddleware
         {
             await Write(context, HttpStatusCode.Conflict, ex.Message);
         }
+        catch (UnauthorizedBusinessException ex)
+        {
+            await Write(context, HttpStatusCode.Unauthorized, ex.Message);
+        }
         catch (Exception ex)
         {
             // Desenvuelve AggregateException

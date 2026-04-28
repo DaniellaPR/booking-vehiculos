@@ -3,7 +3,7 @@
     <h1>Gestión de Flota</h1>
     <p>Lista total de vehículos registrados en el sistema.</p>
   </div>
-  <button class="btn btn-primary">+ Nuevo Vehículo</button>
+  <button class="btn btn-primary" (click)="abrirModal()">+ Nuevo Vehículo</button>
 </div>
 
 @if (isLoading()) {
@@ -15,6 +15,7 @@
       <tr>
         <th>Placa</th>
         <th>Modelo</th>
+        <th>Precio/Día</th>
         <th>Año</th>
         <th>Kilometraje</th>
         <th>Estado</th>
@@ -22,13 +23,16 @@
       </tr>
     </thead>
     <tbody>
-      @for (v of vehiculos(); track v.VEH_id) {
+      @for (v of vehiculos(); track $index) {
       <tr>
         <td><strong>{{ v.VEH_placa }}</strong></td>
         <td>{{ v.VEH_modelo }}</td>
+        <td style="color: var(--cyan); font-weight: 600;">
+          ${{ getPrecio(v) | number:'1.2-2' }}
+        </td>
         <td>{{ v.VEH_anio }}</td>
         <td>{{ v.VEH_kilometraje }} km</td>
-        <td><span class="badge badge-success">Activo</span></td>
+        <td><span class="badge badge-success">{{ v.VEH_estado || 'Disponible' }}</span></td>
         <td>
           <button class="btn-icon" title="Editar">✏️</button>
           <button class="btn-icon btn-del" title="Eliminar" (click)="eliminar(v.VEH_id)">🗑️</button>
@@ -36,10 +40,83 @@
       </tr>
       } @empty {
       <tr>
-        <td colspan="6" style="text-align:center; color: var(--text2);">No hay vehículos registrados.</td>
+        <td colspan="7" style="text-align:center; color: var(--text2);">No hay vehículos registrados.</td>
       </tr>
       }
     </tbody>
   </table>
+</div>
+}
+
+<!-- MODAL NUEVO VEHÍCULO -->
+@if (mostrarModal()) {
+<div class="modal-overlay" (click)="cerrarModal()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Nuevo Vehículo</h2>
+      <button class="modal-close" (click)="cerrarModal()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      @if (errorModal()) {
+      <div class="form-error-banner">{{ errorModal() }}</div>
+      }
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Placa *</label>
+          <input type="text" [(ngModel)]="form.VEH_placa" placeholder="Ej: ABC-1234" />
+        </div>
+        <div class="form-group">
+          <label>Modelo *</label>
+          <input type="text" [(ngModel)]="form.VEH_modelo" placeholder="Ej: Toyota Corolla" />
+        </div>
+        <div class="form-group">
+          <label>Año *</label>
+          <input type="number" [(ngModel)]="form.VEH_anio" min="2000" [max]="2026" />
+        </div>
+        <div class="form-group">
+          <label>Color</label>
+          <input type="text" [(ngModel)]="form.VEH_color" placeholder="Ej: Blanco" />
+        </div>
+        <div class="form-group">
+          <label>Kilometraje</label>
+          <input type="number" [(ngModel)]="form.VEH_kilometraje" min="0" />
+        </div>
+        <div class="form-group">
+          <label>Estado</label>
+          <select [(ngModel)]="form.VEH_estado">
+            <option value="Disponible">Disponible</option>
+            <option value="Alquilado">Alquilado</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Categoría *</label>
+          <select [(ngModel)]="form.CAT_id">
+            <option value="">-- Seleccionar --</option>
+            @for (c of categorias(); track c.CAT_id) {
+            <option [value]="c.CAT_id">{{ c.CAT_nombre }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Sucursal *</label>
+          <select [(ngModel)]="form.SUC_id">
+            <option value="">-- Seleccionar --</option>
+            @for (s of sucursales(); track s.SUC_id) {
+            <option [value]="s.SUC_id">{{ s.SUC_nombre }} — {{ s.SUC_ciudad }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+      <button class="btn btn-primary" (click)="guardar()" [disabled]="guardando()">
+        {{ guardando() ? 'Guardando...' : 'Crear Vehículo' }}
+      </button>
+    </div>
+  </div>
 </div>
 }

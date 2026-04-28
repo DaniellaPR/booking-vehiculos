@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KgKGn0XgTV4=",
+  "dgSpecHash": "mps0J/XN4CY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.API\\Microservicio.Coche.API.csproj",
+  "projectFilePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.API\\Microservicio.Coche.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pdani\\.nuget\\packages\\asp.versioning.abstractions\\8.1.0\\asp.versioning.abstractions.8.1.0.nupkg.sha512",
     "C:\\Users\\pdani\\.nuget\\packages\\asp.versioning.http\\8.1.1\\asp.versioning.http.8.1.1.nupkg.sha512",

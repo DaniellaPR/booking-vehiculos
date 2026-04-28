@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CH/xIgw4AxQ=",
+  "dgSpecHash": "8yRP8xsNP+w=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
+  "projectFilePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pdani\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.0\\microsoft.entityframeworkcore.10.0.0.nupkg.sha512",
     "C:\\Users\\pdani\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.0\\microsoft.entityframeworkcore.abstractions.10.0.0.nupkg.sha512",

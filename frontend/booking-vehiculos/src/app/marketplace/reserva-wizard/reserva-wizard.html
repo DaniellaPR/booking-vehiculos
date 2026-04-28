@@ -1,37 +1,263 @@
-<app-navbar></app-navbar>
-
 <div class="wizard-container">
-  <div class="wizard-header">
-    <div class="step" [class.active]="step() === 1">1. Fechas</div>
-    <div class="step" [class.active]="step() === 2">2. Seguros y Extras</div>
-    <div class="step" [class.active]="step() === 3">3. Confirmar</div>
-  </div>
+  <div class="wizard-card">
 
-  <div class="wizard-body">
-    @if (step() === 1) {
-    <div class="step-content">
-      <h2>Selecciona tus fechas</h2>
-      <input type="date">
-      <button (click)="next()">Siguiente</button>
-    </div>
-    }
+    <div class="wizard-header">
+      <div class="form-eyebrow">DriveX · {{ vehiculoSeleccionado()?.VEH_modelo || vehiculoSeleccionado()?.veH_modelo || 'Cargando vehículo...' }}</div>
+      <div class="form-title">NUEVA RESERVA</div>
 
-    @if (step() === 2) {
-    <div class="step-content">
-      <h2>Extras Adicionales</h2>
-      <label><input type="checkbox"> GPS (+ $5/día)</label>
-      <button (click)="prev()">Atrás</button>
-      <button (click)="next()">Siguiente</button>
+      <div class="stepper">
+        <div class="step" [class.active]="step() >= 1">1. Fechas</div>
+        <div class="step-line" [class.active]="step() >= 2"></div>
+        <div class="step" [class.active]="step() >= 2">2. Protección</div>
+        <div class="step-line" [class.active]="step() >= 3"></div>
+        <div class="step" [class.active]="step() >= 3">3. Resumen</div>
+        <div class="step-line" [class.active]="step() >= 4"></div>
+        <div class="step" [class.active]="step() >= 4">4. Confirmar</div>
+      </div>
     </div>
-    }
 
-    @if (step() === 3) {
-    <div class="step-content">
-      <h2>Resumen de tu Reserva</h2>
-      <p>Verifica los datos antes de confirmar.</p>
-      <button (click)="prev()">Atrás</button>
-      <button (click)="finalizar()">Confirmar Reserva</button>
+    <div class="wizard-body">
+
+      <!-- ── PASO 1: Fechas y Sucursales ── -->
+      @if (step() === 1) {
+      <div class="fade-in">
+        <h3 class="step-title">Itinerario de viaje</h3>
+
+        <div class="form-row-2">
+          <div class="field">
+            <label class="field-label">Fecha Retiro</label>
+            <input type="date" class="field-input" [value]="reservaData().fechaRetiro" (change)="setFechaRetiro($any($event.target).value)" [min]="fechaMinima">
+          </div>
+          <div class="field">
+            <label class="field-label">Fecha Devolución</label>
+            <input type="date" class="field-input" [value]="reservaData().fechaDevolucion" (change)="setFechaDevolucion($any($event.target).value)"
+                   [min]="reservaData().fechaRetiro || fechaMinima">
+          </div>
+        </div>
+
+        @if (numeroDias() > 0) {
+        <div style="text-align:center; padding: 8px; color: var(--cyan); font-size: 13px; margin-bottom: 12px;">
+          📅 {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }} de alquiler
+        </div>
+        }
+
+        <div class="form-row-2">
+          <div class="field">
+            <label class="field-label">Sucursal Retiro</label>
+            <select class="field-input" [(ngModel)]="reservaData().sucursalRetiroId">
+              <option value="">Selecciona una sucursal</option>
+              @for (s of sucursales(); track $index) {
+              <option [value]="s.SUC_id || s.suC_id">
+                {{ s.SUC_nombre || s.suC_nombre }} ({{ s.SUC_ciudad || s.suC_ciudad }})
+              </option>
+              }
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label">Sucursal Devolución</label>
+            <select class="field-input" [(ngModel)]="reservaData().sucursalDevolucionId">
+              <option value="">Selecciona una sucursal</option>
+              @for (s of sucursales(); track $index) {
+              <option [value]="s.SUC_id || s.suC_id">{{ s.SUC_nombre || s.suC_nombre }}</option>
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- ── PASO 2: Protección y Extras ── -->
+      @if (step() === 2) {
+      <div class="fade-in">
+        <h3 class="step-title">Protección y Extras</h3>
+
+        <div class="field">
+          <label class="field-label">Plan de Seguro</label>
+          <select class="field-input" [(ngModel)]="reservaData().seguroId">
+            <option value="">Sin seguro adicional</option>
+            @for (seg of seguros(); track $index) {
+            <option [value]="seg.SEG_id || seg.seG_id">
+              {{ seg.SEG_nombre || seg.seG_nombre }} (+${{ seg.SEG_costoDiario || seg.seG_costoDiario }}/día)
+            </option>
+            }
+          </select>
+        </div>
+
+        <h3 class="step-title mt-4">Servicios Adicionales</h3>
+        <div class="extras-grid">
+          @for (ext of extras(); track $index) {
+          <div class="extra-card" [class.selected]="isExtraSelected(ext)" (click)="toggleExtra(ext)">
+            <div class="extra-info">
+              <span class="name">{{ ext.EXT_nombre || ext.exT_nombre }}</span>
+              <span class="price">+${{ ext.EXT_costo || ext.exT_costo }}/día</span>
+            </div>
+            <div class="check">@if(isExtraSelected(ext)){ ✓ }</div>
+          </div>
+          }
+          @if (extras().length === 0) {
+          <p style="color: var(--text2); font-size: 13px;">No hay extras adicionales disponibles.</p>
+          }
+        </div>
+      </div>
+      }
+
+      <!-- ── PASO 3: Resumen ── -->
+      @if (step() === 3) {
+      <div class="fade-in">
+        <h3 class="step-title">Resumen de tu reserva</h3>
+
+        <!-- Info del vehículo -->
+        <div class="vehicle-summary" style="display:flex; align-items:center; gap:14px; background:var(--s2); border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin-bottom:20px;">
+          <div style="font-size:32px;">🚗</div>
+          <div>
+            <div style="font-weight:700; font-size:15px; color:var(--text);">
+              {{ vehiculoSeleccionado()?.VEH_modelo || vehiculoSeleccionado()?.veH_modelo || 'Vehículo' }}
+            </div>
+            <div style="font-size:12px; color:var(--text2); margin-top:3px;">
+              {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }} ·
+              {{ reservaData().fechaRetiro }} → {{ reservaData().fechaDevolucion }}
+            </div>
+          </div>
+        </div>
+
+        <div class="resumen-box">
+
+          <!-- Precio vehículo -->
+          <div class="resumen-item">
+            <span>Vehículo <small style="color:var(--text2);">× {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}</small></span>
+            <span class="price-val">
+              ${{ precioBaseVehiculo() | number:'1.2-2' }}/día
+              <small style="color:var(--text2);"> = ${{ (precioBaseVehiculo() * numeroDias()) | number:'1.2-2' }}</small>
+            </span>
+          </div>
+
+          <!-- Seguro -->
+          @if (reservaData().seguroId && costoSeguroDiario() > 0) {
+          <div class="resumen-item">
+            <span>Seguro <small style="color:var(--text2);">× {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}</small></span>
+            <span class="price-val">
+              ${{ costoSeguroDiario() | number:'1.2-2' }}/día
+              <small style="color:var(--text2);"> = ${{ (costoSeguroDiario() * numeroDias()) | number:'1.2-2' }}</small>
+            </span>
+          </div>
+          }
+
+          <!-- Extras -->
+          @if (reservaData().extrasSeleccionados.length > 0) {
+          <div style="margin-top: 10px; border-top: 1px dashed var(--border); padding-top: 10px;">
+            <p style="font-size: 12px; color: var(--text2); margin-bottom: 5px;">Servicios adicionales:</p>
+            @for (item of reservaData().extrasSeleccionados; track $index) {
+            <div class="resumen-item" style="font-size: 13px; opacity: 0.85;">
+              <span>• {{ item.EXT_nombre || item.exT_nombre }}</span>
+              <span>
+                ${{ (item.EXT_costo || item.exT_costo) | number:'1.2-2' }}/día
+                <small style="color:var(--text2);"> = ${{ ((item.EXT_costo || item.exT_costo) * numeroDias()) | number:'1.2-2' }}</small>
+              </span>
+            </div>
+            }
+          </div>
+          }
+
+          <div style="margin: 16px 0; height: 1px; background: var(--border);"></div>
+
+          <div class="resumen-total">
+            <span style="font-weight: 700;">TOTAL ESTIMADO ({{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }})</span>
+            <span class="total-price" style="color: var(--cyan); font-size: 22px; font-weight: 800;">
+              ${{ costoTotal() | number:'1.2-2' }}
+            </span>
+          </div>
+
+          <div style="margin-top:10px; font-size:11px; color:var(--text2); text-align:right;">
+            ${{ costoDiario() | number:'1.2-2' }} / día × {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- ── PASO 4: Confirmar ── -->
+      @if (step() === 4) {
+      <div class="fade-in">
+        <h3 class="step-title">Confirmar Reserva</h3>
+
+        <!-- Éxito -->
+        @if (reservaExitosa()) {
+        <div style="background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); padding:30px; border-radius:12px; text-align:center; margin-top:20px;">
+          <div style="font-size:48px; margin-bottom:10px;">✅</div>
+          <h3 style="color:#34d399; margin-bottom:10px; font-weight:700;">¡Reserva confirmada con éxito!</h3>
+          <p style="color:var(--text2); margin-bottom:20px;">Tu vehículo te estará esperando. Puedes revisar tus reservas en tu perfil.</p>
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+            <button class="btn-submit" style="width:auto; padding:10px 24px;" (click)="irAMisReservas()">
+              📋 Ver mis reservas
+            </button>
+            <button style="background:none; border:1px solid var(--border); color:var(--text2); padding:10px 24px; border-radius:8px; cursor:pointer;" (click)="irAInicio()">
+              Volver al inicio
+            </button>
+          </div>
+        </div>
+        }
+
+        <!-- No autenticado -->
+        @else if (!authService.isAuthenticated()) {
+        <div style="background:rgba(248,113,113,0.1); border:1px solid rgba(248,113,113,0.3); padding:20px; border-radius:12px; text-align:center; margin-top:20px;">
+          <p style="color:#f87171; font-weight:600; margin-bottom:16px;">
+            ⚠️ Debes iniciar sesión para confirmar tu reserva.
+          </p>
+          <button class="btn-submit" style="width:auto; padding:10px 24px; margin:0 auto;" (click)="irALogin()">
+            Ir a Iniciar Sesión
+          </button>
+        </div>
+        }
+
+        <!-- Autenticado - mostrar resumen final -->
+        @else {
+        <div class="resumen-box" style="margin-bottom:20px;">
+          <div class="resumen-item">
+            <span style="color:var(--text2);">Vehículo</span>
+            <span style="font-weight:600;">{{ vehiculoSeleccionado()?.VEH_modelo || '—' }}</span>
+          </div>
+          <div class="resumen-item">
+            <span style="color:var(--text2);">Período</span>
+            <span style="font-weight:600;">{{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}</span>
+          </div>
+          <div style="margin:12px 0; height:1px; background:var(--border);"></div>
+          <div class="resumen-total">
+            <span style="font-weight:700;">TOTAL A PAGAR</span>
+            <span class="total-price" style="color:var(--cyan); font-size:22px; font-weight:800;">
+              ${{ costoTotal() | number:'1.2-2' }}
+            </span>
+          </div>
+        </div>
+
+        @if (errorMsg()) {
+        <div style="background:rgba(248,113,113,0.1); border:1px solid rgba(248,113,113,0.3); padding:12px 16px; border-radius:8px; color:#f87171; font-size:13px; margin-bottom:16px;">
+          ⚠️ {{ errorMsg() }}
+        </div>
+        }
+        }
+      </div>
+      }
+
+      <!-- ── Footer de navegación ── -->
+      <div class="wizard-footer">
+        <button class="btn-secondary" (click)="prevStep()"
+                [style.visibility]="step() === 1 ? 'hidden' : 'visible'">
+          Atrás
+        </button>
+
+        @if (step() < 4 && !reservaExitosa()) {
+        <button class="btn-submit btn-auto" (click)="nextStep()">Siguiente →</button>
+        }
+        @else if (step() === 4 && authService.isAuthenticated() && !reservaExitosa()) {
+        <button class="btn-submit btn-auto"
+                [class.loading]="isLoading()"
+                (click)="finalizarReserva()"
+                [disabled]="isLoading()">
+          <span class="btn-text">✔ Confirmar y Reservar</span>
+          <span class="btn-spinner"><span class="spinner"></span> Procesando...</span>
+        </button>
+        }
+      </div>
+
     </div>
-    }
   </div>
 </div>

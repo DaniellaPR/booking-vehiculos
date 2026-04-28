@@ -95,4 +95,13 @@ public class VehiculoService : IVehiculoService
         var vehiculos = await _vehiculoDataService.ListarAsync(cancellationToken);
         return vehiculos.Select(VehiculoBusinessMapper.ToResponse).ToList();
     }
+    public async Task EliminarAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var existe = await _vehiculoDataService.ObtenerPorIdAsync(id, cancellationToken);
+        if (existe == null)
+            throw new NotFoundException("No se encontró el vehículo para eliminar.");
+
+        await _vehiculoDataService.EliminarAsync(id, cancellationToken);
+    }
+
 }

@@ -1,0 +1,138 @@
+<div class="left">
+  <div class="left-bg"></div>
+  <div class="grid-bg"></div>
+  <div class="left-content">
+    <div class="logo">
+      <div class="logo-dot"></div>
+      DRIVE<span>X</span>
+    </div>
+  </div>
+  <div class="left-hero">
+    <h1>COMIENZA<br>TU <em>VIAJE</em><br>CON NOSOTROS</h1>
+    <p>Únete a la plataforma de reservas más rápida y segura del país.</p>
+  </div>
+  <div class="left-chips">
+    <div class="chip">
+      <span class="chip-num">100+</span>
+      <span class="chip-lbl">Autos Premium</span>
+    </div>
+    <div class="chip">
+      <span class="chip-num">24/7</span>
+      <span class="chip-lbl">Soporte Total</span>
+    </div>
+  </div>
+</div>
+
+<div class="right">
+  <div class="form-header">
+    <div class="form-eyebrow">Sistema DriveX</div>
+    <div class="form-title">CREAR CUENTA</div>
+    <div class="form-sub">Ingresa tus datos personales para registrarte</div>
+  </div>
+
+  @if (globalError) {
+  <div class="alert error">
+    <span>⚠️</span>
+    <span>{{ globalError }}</span>
+  </div>
+  }
+
+  <form [formGroup]="registroForm" (ngSubmit)="registrar()">
+
+    <div class="field" [class.err]="hasError('identificacion')" [class.ok]="isOk('identificacion')">
+      <label class="field-label">
+        Cédula / Identificación @if(isOk('identificacion')){<span class="ok-mark">✓</span>}
+      </label>
+      <div class="field-wrap">
+        <span class="fi">🪪</span>
+        <input class="field-input" type="text" formControlName="identificacion" placeholder="Ej. 1700000000" maxlength="10">
+      </div>
+      @if (hasError('identificacion')) {
+      <div class="field-err">⚠ Debe tener 10 dígitos numéricos exactos.</div>
+      }
+    </div>
+
+    <div class="form-row-2">
+      <div class="field" [class.err]="hasError('nombres')" [class.ok]="isOk('nombres')">
+        <label class="field-label">
+          Nombres @if(isOk('nombres')){<span class="ok-mark">✓</span>}
+        </label>
+        <div class="field-wrap">
+          <span class="fi">👤</span>
+          <input class="field-input" type="text" formControlName="nombres" placeholder="Juan Carlos">
+        </div>
+      </div>
+
+      <div class="field" [class.err]="hasError('apellidos')" [class.ok]="isOk('apellidos')">
+        <label class="field-label">
+          Apellidos @if(isOk('apellidos')){<span class="ok-mark">✓</span>}
+        </label>
+        <div class="field-wrap">
+          <span class="fi">👥</span>
+          <input class="field-input" type="text" formControlName="apellidos" placeholder="Pérez Silva">
+        </div>
+      </div>
+    </div>
+
+    @if (hasError('nombres') || hasError('apellidos')) {
+    <div class="field-err error-margin">⚠ Los nombres y apellidos solo deben contener letras.</div>
+    }
+
+    <div class="field" [class.err]="hasError('correo')" [class.ok]="isOk('correo')">
+      <label class="field-label">
+        Correo electrónico @if(isOk('correo')){<span class="ok-mark">✓</span>}
+      </label>
+      <div class="field-wrap">
+        <span class="fi">✉️</span>
+        <input class="field-input" type="email" formControlName="correo" placeholder="tu@correo.com">
+      </div>
+      @if (hasError('correo')) {
+      <div class="field-err">⚠ Ingresa un correo electrónico válido.</div>
+      }
+    </div>
+
+    <div class="field" [class.err]="hasError('telefono')" [class.ok]="isOk('telefono')">
+      <label class="field-label">
+        Celular @if(isOk('telefono')){<span class="ok-mark">✓</span>}
+      </label>
+      <div class="field-wrap">
+        <span class="fi">📱</span>
+        <input class="field-input" type="text" formControlName="telefono" placeholder="0999999999" maxlength="10">
+      </div>
+      @if (hasError('telefono')) {
+      <div class="field-err">⚠ Debe empezar con 09 y tener 10 dígitos.</div>
+      }
+    </div>
+
+    <div class="field" [class.err]="hasError('password')" [class.ok]="isOk('password')">
+      <label class="field-label">
+        Contraseña @if(isOk('password')){<span class="ok-mark">✓</span>}
+      </label>
+      <div class="field-wrap">
+        <span class="fi">🔒</span>
+        <input class="field-input" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Mín. 8 car., mayús., número, símbolo" maxlength="128">
+        <button class="field-toggle" type="button" (click)="togglePassword()">
+          {{ showPassword ? '🙈' : '👁' }}
+        </button>
+      </div>
+
+      @if (hasError('password')) {
+      <div class="field-err">
+        @if (f.password.errors?.['required']) { ⚠ La contraseña es obligatoria. }
+        @if (f.password.errors?.['pattern']) { ⚠ Debe tener al menos 8 caracteres, incluir mayúscula, minúscula, un número y un símbolo especial. }
+      </div>
+      }
+    </div>
+
+    <button class="btn-submit" type="submit" [disabled]="isLoading" [class.loading]="isLoading">
+      <span class="btn-text">Registrarme en DriveX</span>
+      <span class="btn-spinner" *ngIf="isLoading"><span class="spinner"></span> Procesando...</span>
+    </button>
+  </form>
+
+  <div class="divider">o</div>
+
+  <button class="btn-secondary" type="button" (click)="irALogin()">
+    🔙 Ya tengo cuenta, iniciar sesión
+  </button>
+</div>

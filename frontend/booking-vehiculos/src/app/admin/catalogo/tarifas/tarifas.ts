@@ -19,7 +19,7 @@ export class TarifasComponent implements OnInit {
   }
 
   cargarTarifas() {
-    this.http.get<any>(`${environment.apiUrl}/tarifas`).subscribe(res => {
+    this.http.get<any>(`${environment.apiUrl}/api/v1/tarifas`).subscribe(res => {
       this.tarifas.set(res.Data || res);
     });
   }

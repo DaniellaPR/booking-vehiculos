@@ -1,48 +1,62 @@
-<div class="admin-page">
-  <div class="page-header">
-    <div>
-      <h1>Control de Reservas</h1>
-      <p>Listado de alquileres activos y solicitudes pendientes.</p>
-    </div>
-  </div>
-
-  <div class="table-container">
-    <table class="admin-table">
-      <thead>
-        <tr>
-          <th>ID Reserva</th>
-          <th>Cliente</th>
-          <th>Fechas (Retiro - Entrega)</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (r of reservas(); track r.RES_id) {
-        <tr>
-          <td><code class="res-id">#{{ r.RES_id.substring(0,8) }}</code></td>
-          <td>Usuario ID: {{ r.CLI_id.substring(0,5) }}...</td>
-          <td>
-            <div class="date-info">
-              <span>{{ r.RES_fechaRetiro | date:'dd/MM/yyyy' }}</span>
-              <span class="arrow">→</span>
-              <span>{{ r.RES_fechaEntrega | date:'dd/MM/yyyy' }}</span>
-            </div>
-          </td>
-          <td>
-            <span class="status-pill" [attr.data-status]="r.RES_estado">
-              {{ r.RES_estado }}
-            </span>
-          </td>
-          <td>
-            <div class="action-buttons">
-              <button class="btn-check" (click)="cambiarEstado(r.RES_id, 'Confirmada')" title="Confirmar">✅</button>
-              <button class="btn-cancel" (click)="cambiarEstado(r.RES_id, 'Cancelada')" title="Cancelar">❌</button>
-            </div>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+<div class="page-header">
+  <div>
+    <h1>Gestión de Reservas</h1>
+    <p>Administración y control de los alquileres registrados.</p>
   </div>
 </div>
+
+@if (isLoading()) {
+<div class="loader">Cargando historial de reservas...</div>
+} @else {
+<div class="table-card">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>ID Reserva</th>
+        <th>Retiro</th>
+        <th>Entrega</th>
+        <th>Estado Actual</th>
+        <th>Acciones Rápidas</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of reservas(); track $index) {
+      <tr>
+        <td><strong style="color: var(--cyan);">#{{ (r.RES_id || r.reS_id | slice:0:8) }}</strong></td>
+
+        <td>{{ (r.RES_fechaRetiro || r.reS_fechaRetiro) | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ (r.RES_fechaEntrega || r.reS_fechaEntrega) | date:'dd/MM/yyyy HH:mm' }}</td>
+
+        <td>
+          <span class="badge"
+                [ngClass]="{
+                    'badge-warning': (r.RES_estado || r.reS_estado) === 'Pendiente',
+                    'badge-success': (r.RES_estado || r.reS_estado) === 'Confirmada',
+                    'badge-danger': (r.RES_estado || r.reS_estado) === 'Cancelada'
+                  }">
+            {{ r.RES_estado || r.reS_estado || 'Pendiente' }}
+          </span>
+        </td>
+
+        <td>
+          @if ((r.RES_estado || r.reS_estado) === 'Pendiente') {
+          <button class="btn btn-sm btn-primary" style="margin-right: 5px;" (click)="cambiarEstado(r, 'Confirmada')">
+            ✅ Confirmar
+          </button>
+          <button class="btn btn-sm btn-secondary" style="background-color: var(--danger); border: none;" (click)="cambiarEstado(r, 'Cancelada')">
+            ❌ Cancelar
+          </button>
+          } @else {
+          <span style="color: var(--text2); font-size: 0.85rem;">Sin acciones</span>
+          }
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="5" style="text-align:center; color: var(--text2);">No hay reservas en el sistema.</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+}

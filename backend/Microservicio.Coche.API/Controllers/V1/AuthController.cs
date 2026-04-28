@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microservicios.Coche.Api.Models.Common;
 using Microservicios.Coche.Api.Models.Settings;
+using Microservicios.Coche.Business.DTOs.Auth;
+using Microservicios.Coche.Business.Interfaces;
 
 namespace Microservicios.Coche.Api.Controllers.V1;
 
@@ -15,36 +18,53 @@ namespace Microservicios.Coche.Api.Controllers.V1;
 [Route("api/v{version:apiVersion}/auth")]
 public class AuthController : ControllerBase
 {
+    private readonly IAuthService _authService;
     private readonly JwtSettings _jwtSettings;
 
-    // Ya no inyectamos IAuthService, solo las configuraciones del JWT
-    public AuthController(IOptions<JwtSettings> jwtOptions)
+    public AuthController(IAuthService authService, IOptions<JwtSettings> jwtOptions)
     {
+        _authService = authService;
         _jwtSettings = jwtOptions.Value;
     }
 
-    // Creamos un DTO falso (Mock) solo para recibir los datos básicos en Swagger
-    public class MockLoginRequest
+    [HttpPost("login")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken ct)
     {
-        public string Correo { get; set; } = "admin@localiza.com";
-        public string Password { get; set; } = "123456";
+        if (!ModelState.IsValid)
+            return BadRequest(ApiResponse<object>.Fail(
+                "Datos inválidos.",
+                ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList()));
+
+        // 1. Validar credenciales contra la BD
+        var result = await _authService.LoginAsync(request, ct);
+
+        // 2. Generar JWT con el rol que viene de la BD
+        var token = GenerarToken(result.USU_id, result.Email, result.Rol);
+
+        return Ok(new
+        {
+            Success = true,
+            Message = "Login exitoso.",
+            Data = new
+            {
+                Token = token,
+                result.Rol
+            }
+        });
     }
 
-    [HttpPost("login")]
-    [AllowAnonymous] // Importante para poder generar el token sin estar logueado
-    public IActionResult Login([FromBody] MockLoginRequest request)
+    private string GenerarToken(Guid usuarioId, string email, string rol)
     {
         var expiration = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpirationMinutes);
 
-        // Creamos las características (Claims) del Token a mano
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Sub, "admin_mock"),
-            new Claim(JwtRegisteredClaimNames.UniqueName, "admin_mock"),
-            new Claim(JwtRegisteredClaimNames.Email, request.Correo),
-            new Claim("name", "Administrador de Prueba"),
-            new Claim(ClaimTypes.Role, "ADMIN"), // ¡Este Rol es el que te dejará pasar!
-            new Claim(ClaimTypes.Role, "VENDEDOR")
+            new Claim(JwtRegisteredClaimNames.Sub, usuarioId.ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, email),
+            new Claim("name", email),
+            new Claim(ClaimTypes.Role, rol),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
@@ -58,18 +78,6 @@ public class AuthController : ControllerBase
             signingCredentials: credentials
         );
 
-        var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-        // Devolvemos la respuesta simulando tu ApiResponse
-        return Ok(new
-        {
-            Success = true,
-            Message = "Login exitoso (Modo Prueba).",
-            Data = new
-            {
-                Token = tokenString,
-                ExpirationUtc = expiration
-            }
-        });
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

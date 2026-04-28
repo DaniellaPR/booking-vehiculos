@@ -148,14 +148,16 @@
 
 /* ── LADO DERECHO: formulario ── */
 .right {
-  width: 440px;
-  flex-shrink: 0;
+  /* width: 440px; <-- Borra o comenta esta línea */
+  flex: 1; /* <-- Añade esto */
+  max-width: 44%; /* <-- Añade esto para que ocupe exactamente la mitad */
+  
   background: var(--surface);
   border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 60px 48px;
+  padding: 60px 8%;
   position: relative;
   overflow-y: auto;
 

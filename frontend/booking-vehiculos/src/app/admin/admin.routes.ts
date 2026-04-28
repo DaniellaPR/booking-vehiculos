@@ -9,6 +9,8 @@ export const adminRoutes: Routes = [
       { path: 'sucursales', loadComponent: () => import('./sucursales/sucursales').then(m => m.SucursalesComponent) },
       { path: 'reservas', loadComponent: () => import('./reservas/reservas').then(m => m.ReservasComponent) },
       { path: 'clientes', loadComponent: () => import('./clientes/clientes').then(m => m.ClientesComponent) },
+      // ── Nueva ruta de gestión de usuarios (solo ADMIN) ──────────────────
+      { path: 'usuarios', loadComponent: () => import('./usuarios/usuarios').then(m => m.UsuariosComponent) },
       {
         path: 'catalogo',
         children: [

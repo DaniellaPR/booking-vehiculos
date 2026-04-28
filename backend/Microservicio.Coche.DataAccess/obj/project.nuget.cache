@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "A3rVzwIMNFY=",
+  "dgSpecHash": "3Jpaylt5Tvs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pdani\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\pdani\\.nuget\\packages\\microsoft.build\\17.7.2\\microsoft.build.17.7.2.nupkg.sha512",
@@ -58,9 +58,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "El paquete \"System.Security.Cryptography.Xml\" 9.0.0 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-37gx-xxp4-5rgx",
-      "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+      "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+      "filePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
       "libraryId": "System.Security.Cryptography.Xml",
       "targetGraphs": [
         "net10.0"
@@ -70,9 +70,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "El paquete \"System.Security.Cryptography.Xml\" 9.0.0 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-w3x6-4m5h-cxqf",
-      "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+      "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Microservicio.Coche\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+      "filePath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
       "libraryId": "System.Security.Cryptography.Xml",
       "targetGraphs": [
         "net10.0"

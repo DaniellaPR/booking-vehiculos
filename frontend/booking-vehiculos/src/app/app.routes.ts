@@ -3,7 +3,7 @@ import { authGuard } from './core/auth/auth.guard';
 import { roleGuard } from './core/auth/role.guard';
 
 export const routes: Routes = [
-  // ── MARKETPLACE PÚBLICO (sin token requerido) ────────────────────────────
+  // ── MARKETPLACE PÚBLICO ─────────────────────────────────────────────────
   {
     path: '',
     loadComponent: () => import('./marketplace/landing/landing').then(m => m.LandingComponent)
@@ -27,19 +27,25 @@ export const routes: Routes = [
     loadComponent: () => import('./auth/registro/registro').then(m => m.RegistroComponent)
   },
 
-  // ── RESERVA: requiere estar autenticado (cualquier rol) ─────────────────
-  // Si no está logueado → lo manda al login y luego vuelve aquí
+  // ── RESERVA: requiere autenticación ────────────────────────────────────
   {
     path: 'reservar/:vehiculoId',
     canActivate: [authGuard],
     loadComponent: () => import('./marketplace/reserva-wizard/reserva-wizard').then(m => m.ReservaWizardComponent)
   },
 
+  // ── MIS RESERVAS: solo clientes autenticados ────────────────────────────
+  {
+    path: 'mis-reservas',
+    canActivate: [authGuard],
+    loadComponent: () => import('./marketplace/mis-reservas/mis-reservas').then(m => m.MisReservasComponent)
+  },
+
   // ── PANEL ADMIN: requiere rol ADMIN o VENDEDOR ──────────────────────────
   {
     path: 'admin',
     canActivate: [authGuard, roleGuard],
-    data: { roles: ['ADMIN', 'VENDEDOR'] },
+    data: { roles: ['ADMINISTRADOR', 'VENDEDOR'] },
     loadComponent: () => import('./admin/layout/layout').then(m => m.LayoutComponent),
     loadChildren: () => import('./admin/admin.routes').then(m => m.adminRoutes)
   },

@@ -9,7 +9,7 @@
   <div class="actions">
     @if (!authService.isAuthenticated()) {
     <button class="btn-login" (click)="goToLogin()">Iniciar Sesión</button>
-    <button class="btn-register" (click)="goToLogin()">Registrarse</button>
+    <button class="btn-register" (click)="goToRegistro()">Registrarse</button>
     } @else {
     <span class="welcome-msg">Hola, {{ authService.getName() }}</span>
     @if (authService.isAdmin() || authService.isVendedor()) {

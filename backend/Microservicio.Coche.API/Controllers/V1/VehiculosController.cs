@@ -59,4 +59,13 @@ public class VehiculosController : ControllerBase
         var result = await _vehiculoService.ActualizarAsync(request, cancellationToken);
         return Ok(ApiResponse<VehiculoResponse>.Ok(result, "Vehículo actualizado exitosamente."));
     }
+
+    [HttpDelete("{id:guid}")]
+    [ProducesResponseType(typeof(ApiResponse<string>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiErrorResponse), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Eliminar(Guid id, CancellationToken cancellationToken)
+    {
+        await _vehiculoService.EliminarAsync(id, cancellationToken);
+        return Ok(ApiResponse<string>.Ok("OK", "Vehículo eliminado físicamente con éxito."));
+    }
 }

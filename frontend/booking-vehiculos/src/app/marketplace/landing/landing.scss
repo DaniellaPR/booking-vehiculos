@@ -84,6 +84,15 @@ nav {
   animation: pulse 2s ease-in-out infinite;
 }
 
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 @keyframes pulse {
   0%,100% {
     opacity: 1;

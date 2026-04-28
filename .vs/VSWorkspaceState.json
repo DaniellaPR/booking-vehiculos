@@ -4,11 +4,13 @@
     "\\frontend\\booking-vehiculos",
     "\\frontend\\booking-vehiculos\\src",
     "\\frontend\\booking-vehiculos\\src\\app",
-    "\\frontend\\booking-vehiculos\\src\\app\\core",
-    "\\frontend\\booking-vehiculos\\src\\app\\core\\auth",
-    "\\frontend\\booking-vehiculos\\src\\app\\shared",
-    "\\frontend\\booking-vehiculos\\src\\app\\shared\\components",
-    "\\frontend\\booking-vehiculos\\src\\app\\shared\\components\\navbar"
+    "\\frontend\\booking-vehiculos\\src\\app\\auth",
+    "\\frontend\\booking-vehiculos\\src\\app\\auth\\login",
+    "\\frontend\\booking-vehiculos\\src\\app\\marketplace",
+    "\\frontend\\booking-vehiculos\\src\\app\\marketplace\\busqueda",
+    "\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing",
+    "\\frontend\\booking-vehiculos\\src\\app\\shared"
   ],
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }

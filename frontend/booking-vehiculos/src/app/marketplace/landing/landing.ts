@@ -1,61 +1,114 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { CardVehiculo } from '../../shared/components/card-vehiculo/card-vehiculo';
+import { VehiculosService } from '../.././core/api'; // Swagger service
 import { environment } from '../../../environments/environment';
-
 import { NavbarComponent } from '../../shared/components/navbar/navbar';
 import { FooterComponent } from '../../shared/components/footer/footer';
-// 1. IMPORTACIÓN CORREGIDA: Apunta a tu carpeta card-vehiculo y extrae la clase CardVehiculo
-import { CardVehiculo } from '../../shared/components/card-vehiculo/card-vehiculo';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  // 2. INCLUSIÓN CORREGIDA: Usamos CardVehiculo aquí
   imports: [CommonModule, NavbarComponent, FooterComponent, CardVehiculo],
   templateUrl: './landing.html',
   styleUrls: ['./landing.scss']
 })
 export class LandingComponent implements OnInit {
+  private vehiculosService = inject(VehiculosService);
   private http = inject(HttpClient);
-  private router = inject(Router);
+  public router = inject(Router);
 
-  vehiculos = signal<any[]>([]);
+  // Señales de Estado
   isLoading = signal<boolean>(true);
-  errorMessage = signal<string | null>(null);
+  vehiculos = signal<any[]>([]);
+  sucursales = signal<any[]>([]);
+  categorias = signal<any[]>([]);
 
-  ngOnInit() {
-    this.cargarVehiculos();
+  // Filtros
+  categoriaActiva = signal<string | null>(null);
+  sucursalSeleccionada = signal<string>('');
+
+  // Vehículos calculados automáticamente basados en los filtros
+  vehiculosFiltrados = computed(() => {
+    let filtrados = this.vehiculos();
+
+    // Filtrar por categoría
+    if (this.categoriaActiva()) {
+      filtrados = filtrados.filter(v => v.caT_id === this.categoriaActiva() || v.CAT_id === this.categoriaActiva());
+    }
+
+    // Filtrar por sucursal (desde el buscador)
+    if (this.sucursalSeleccionada()) {
+      filtrados = filtrados.filter(v => v.suC_id === this.sucursalSeleccionada() || v.SUC_id === this.sucursalSeleccionada());
+    }
+
+    return filtrados;
+  });
+
+  // Función sencilla para saber si el usuario ya inició sesión
+  isLogged(): boolean {
+    return !!localStorage.getItem('token'); // Devuelve true si existe un token
   }
 
-  cargarVehiculos() {
-    this.isLoading.set(true);
-    this.errorMessage.set(null);
+  ngOnInit() {
+    this.cargarDatos();
+  }
 
-    this.http.get<any>(`${environment.apiUrl}/vehiculos`).subscribe({
-      next: (res) => {
+  cargarDatos() {
+    this.isLoading.set(true);
+
+    // 1. Cargar Vehículos
+    this.vehiculosService.apiV1VehiculosGet().subscribe({
+      next: (res: any) => {
+        this.vehiculos.set(res.data || res.Data || res || []);
         this.isLoading.set(false);
-        this.vehiculos.set(res.Data || res);
       },
-      error: (err: HttpErrorResponse) => {
-        this.isLoading.set(false);
+      error: (err) => {
         console.error('Error al cargar vehículos:', err);
-        this.errorMessage.set('No se pudo conectar con el servidor.');
+        this.isLoading.set(false);
       }
+    });
+
+    // 2. Cargar Sucursales
+    this.http.get<any>(`${environment.apiUrl}/api/v1/sucursales`).subscribe({
+      next: (res) => this.sucursales.set(res.data || res.Data || res || []),
+      error: (err) => console.error('Error sucursales:', err)
+    });
+
+    // 3. Cargar Categorías
+    this.http.get<any>(`${environment.apiUrl}/api/v1/categorias-vehiculo`).subscribe({
+      next: (res) => this.categorias.set(res.data || res.Data || res || []),
+      error: (err) => console.error('Error categorias:', err)
     });
   }
 
+  // 💥 LA FUNCIÓN CLAVE PARA OBTENER EL PRECIO
+  getPrecioVehiculo(vehiculo: any): number {
+    if (!vehiculo) return 0;
+    const catId = vehiculo.CAT_id || vehiculo.caT_id;
+    const categoria = this.categorias().find((c: any) => (c.CAT_id || c.caT_id) === catId);
+    return categoria ? (categoria.CAT_costoBase || categoria.caT_costoBase || 0) : 0;
+  }
+
+  filtrarCategoria(catId: string | null) {
+    this.categoriaActiva.set(catId);
+  }
+
+  onSucursalChange(event: any) {
+    this.sucursalSeleccionada.set(event.target.value);
+  }
+
   buscarVehiculos() {
-    console.log("Buscar autos clickeado");
+    const element = document.getElementById('vehiculos');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   verTodos() {
     this.router.navigate(['/buscar']);
-  }
-
-  filtrarCategoria(categoria: any, evt: any) {
-    console.log("Filtrar por", categoria);
   }
 
   goToLogin() {
@@ -63,6 +116,6 @@ export class LandingComponent implements OnInit {
   }
 
   goToRegister() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/registro']);
   }
 }

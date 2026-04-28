@@ -10,7 +10,7 @@ namespace Microservicios.Coche.Api.Controllers.V1;
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/sucursales")]
-[Authorize(Roles = "ADMIN,VENDEDOR")]
+[AllowAnonymous]
 public class SucursalesController : ControllerBase
 {
     private readonly ISucursalService _sucursalService;

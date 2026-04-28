@@ -11,9 +11,15 @@ import { AuthService } from '../../core/auth/auth.service';
   styleUrls: ['./layout.scss']
 })
 export class LayoutComponent {
-  // authService público para que el template pueda accederlo
   authService = inject(AuthService);
   private router = inject(Router);
+
+  today: string = (() => {
+    const now = new Date();
+    const dias = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    return `${dias[now.getDay()]}, ${now.getDate()} ${meses[now.getMonth()]} ${now.getFullYear()}`;
+  })();
 
   logout() {
     this.authService.logout();
