@@ -1,5 +1,4 @@
 export const environment = {
   production: false,
-  // QUITAR EL /api/v1 AL FINAL. DEBE QUEDAR SOLO EL PUERTO:
-  apiUrl: 'https://localhost:7291'
+  baseUrl: 'https://booking-coche-api-ccdkbvcvhudvh2ef.brazilsouth-01.azurewebsites.net/api/v1'
 };
