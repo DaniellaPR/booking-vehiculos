@@ -17,6 +17,7 @@ public static class VehiculoBusinessMapper
             VEH_color = request.VEH_color,
             VEH_kilometraje = request.VEH_kilometraje,
             VEH_estado = request.VEH_estado,
+            VEH_imagenUrl = request.VEH_imagenUrl,
             VEH_usuarioCreacion = request.VEH_usuarioCreacion,
             VEH_fechaCreacion = DateTime.UtcNow
         };
@@ -35,6 +36,7 @@ public static class VehiculoBusinessMapper
             VEH_color = request.VEH_color,
             VEH_kilometraje = request.VEH_kilometraje,
             VEH_estado = request.VEH_estado,
+            VEH_imagenUrl = request.VEH_imagenUrl,
             VEH_usuarioModificacion = request.VEH_usuarioModificacion,
             VEH_fechaModificacion = DateTime.UtcNow
         };
@@ -53,6 +55,7 @@ public static class VehiculoBusinessMapper
             VEH_color = model.VEH_color,
             VEH_kilometraje = model.VEH_kilometraje ?? 0m,
             VEH_estado = model.VEH_estado ?? string.Empty,
+            VEH_imagenUrl = model.VEH_imagenUrl,
             VEH_fechaCreacion = model.VEH_fechaCreacion,
             VEH_usuarioCreacion = model.VEH_usuarioCreacion,
             VEH_fechaModificacion = model.VEH_fechaModificacion,

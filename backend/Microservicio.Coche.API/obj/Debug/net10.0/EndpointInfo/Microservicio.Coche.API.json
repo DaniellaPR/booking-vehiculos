@@ -621,6 +621,189 @@
         }
       }
     },
+    "/api/v1/pagos": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseIReadOnlyListApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseIReadOnlyListApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseIReadOnlyListApiResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pagos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearPagoRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearPagoRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearPagoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pagos/{id}": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/pagos/buscar": {
+      "post": {
+        "tags": [
+          "Pagos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoFiltroRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoFiltroRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagoFiltroRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseDataPagedResultApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseDataPagedResultApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagoResponseDataPagedResultApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/reservas": {
       "get": {
         "tags": [
@@ -640,17 +823,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CrearReservaRequest"
+                "$ref": "#/components/schemas/ReservaRequestDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CrearReservaRequest"
+                "$ref": "#/components/schemas/ReservaRequestDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CrearReservaRequest"
+                "$ref": "#/components/schemas/ReservaRequestDto"
               }
             }
           }
@@ -714,6 +897,90 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/ActualizarReservaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/reservas/{id}/alquilar": {
+      "post": {
+        "tags": [
+          "Reservas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlquilerRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlquilerRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlquilerRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/reservas/{id}/devolver": {
+      "post": {
+        "tags": [
+          "Reservas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevolucionRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevolucionRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevolucionRequestDto"
               }
             }
           }
@@ -1949,9 +2216,27 @@
             "type": "string",
             "nullable": true
           },
+          "VEH_imagenUrl": {
+            "type": "string",
+            "nullable": true
+          },
           "VEH_usuarioModificacion": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlquilerRequestDto": {
+        "type": "object",
+        "properties": {
+          "ReservaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "KmSalida": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2133,34 +2418,22 @@
         },
         "additionalProperties": false
       },
-      "CrearReservaRequest": {
+      "CrearPagoRequest": {
         "type": "object",
         "properties": {
-          "CLI_id": {
+          "RES_id": {
             "type": "string",
             "format": "uuid"
           },
-          "RES_sucursalRetiroId": {
-            "type": "string",
-            "format": "uuid"
+          "PAG_monto": {
+            "type": "number",
+            "format": "double"
           },
-          "RES_sucursalEntregaId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "RES_fechaRetiro": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "RES_fechaEntrega": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "RES_estado": {
+          "PAG_metodo": {
             "type": "string",
             "nullable": true
           },
-          "RES_usuarioCreacion": {
+          "PAG_estado": {
             "type": "string",
             "nullable": true
           }
@@ -2287,9 +2560,31 @@
             "type": "string",
             "nullable": true
           },
+          "VEH_imagenUrl": {
+            "type": "string",
+            "nullable": true
+          },
           "VEH_usuarioCreacion": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DevolucionRequestDto": {
+        "type": "object",
+        "properties": {
+          "AlquilerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "KmEntrada": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CargoExtra": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -2372,6 +2667,188 @@
           "Password": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PagoFiltroRequest": {
+        "type": "object",
+        "properties": {
+          "PageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "PageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "RES_id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "PAG_estado": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PagoResponse": {
+        "type": "object",
+        "properties": {
+          "PAG_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "RES_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "PAG_monto": {
+            "type": "number",
+            "format": "double"
+          },
+          "PAG_metodo": {
+            "type": "string",
+            "nullable": true
+          },
+          "PAG_estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "PAG_fechaPago": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PagoResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          },
+          "Data": {
+            "$ref": "#/components/schemas/PagoResponse"
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PagoResponseDataPagedResult": {
+        "type": "object",
+        "properties": {
+          "Items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PagoResponse"
+            },
+            "nullable": true
+          },
+          "PageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "PageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TotalRecords": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PagoResponseDataPagedResultApiResponse": {
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          },
+          "Data": {
+            "$ref": "#/components/schemas/PagoResponseDataPagedResult"
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PagoResponseIReadOnlyListApiResponse": {
+        "type": "object",
+        "properties": {
+          "Success": {
+            "type": "boolean"
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          },
+          "Data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PagoResponse"
+            },
+            "nullable": true
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReservaRequestDto": {
+        "type": "object",
+        "properties": {
+          "VehiculoId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ClienteId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "SucursalRetiroId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "SucursalEntregaId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "FechaRetiro": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "FechaEntrega": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

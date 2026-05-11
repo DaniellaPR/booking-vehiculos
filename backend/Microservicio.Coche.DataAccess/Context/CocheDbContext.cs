@@ -1,4 +1,5 @@
-﻿using Microservicios.Coche.DataAccess.Entities;
+﻿using Microservicios.Coche.DataAccess.Configurations;
+using Microservicios.Coche.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Xml;
@@ -11,7 +12,6 @@ namespace Microservicios.Coche.DataAccess.Context
         {
         }
 
-        // DbSets (Agregaremos los restantes conforme avancemos, aquí declaro los 2 primeros)
         public DbSet<AuditoriaEntity> Auditorias { get; set; } = null!;
         public DbSet<RolEntity> Roles { get; set; } = null!;
         public DbSet<UsuarioAppEntity> UsuariosApp { get; set; } = null!;
@@ -27,6 +27,7 @@ namespace Microservicios.Coche.DataAccess.Context
         public DbSet<TarifaEntity> Tarifas { get; set; } = null!;
         public DbSet<ReservaEntity> Reservas { get; set; } = null!;
         public DbSet<ReservaDetalleEntity> ReservaDetalles { get; set; } = null!;
+        public DbSet<PagoEntity> Pagos { get; set; } = null!;
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

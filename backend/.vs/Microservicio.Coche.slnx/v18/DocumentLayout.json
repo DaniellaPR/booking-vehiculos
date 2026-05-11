@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DD2EED40-A006-C5D8-D35C-00E6678751B2}|Microservicio.Coche.API\\Microservicio.Coche.API.csproj|c:\\users\\pdani\\source\\repos\\daniellapr\\booking-vehiculos\\backend\\microservicio.coche.api\\microservicio.coche.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DD2EED40-A006-C5D8-D35C-00E6678751B2}|Microservicio.Coche.API\\Microservicio.Coche.API.csproj|solutionrelative:microservicio.coche.api\\microservicio.coche.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B04AE44-F566-ACB5-5E1D-1755C6649C83}|Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj|c:\\users\\pdani\\source\\repos\\daniellapr\\booking-vehiculos\\backend\\microservicio.coche.dataaccess\\configurations\\reservaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B04AE44-F566-ACB5-5E1D-1755C6649C83}|Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj|solutionrelative:microservicio.coche.dataaccess\\configurations\\reservaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B04AE44-F566-ACB5-5E1D-1755C6649C83}|Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj|c:\\users\\pdani\\source\\repos\\daniellapr\\booking-vehiculos\\backend\\microservicio.coche.dataaccess\\configurations\\pagoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B04AE44-F566-ACB5-5E1D-1755C6649C83}|Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj|solutionrelative:microservicio.coche.dataaccess\\configurations\\pagoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B04AE44-F566-ACB5-5E1D-1755C6649C83}|Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj|c:\\users\\pdani\\source\\repos\\daniellapr\\booking-vehiculos\\backend\\microservicio.coche.dataaccess\\context\\cochedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3B04AE44-F566-ACB5-5E1D-1755C6649C83}|Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj|solutionrelative:microservicio.coche.dataaccess\\context\\cochedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "auth.interceptor.ts",
+              "DocumentMoniker": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+              "RelativeDocumentMoniker": "..\\frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+              "ToolTip": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+              "RelativeToolTip": "..\\frontend\\booking-vehiculos\\src\\app\\core\\interceptors\\auth.interceptor.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-05-10T20:07:32.355Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PagoConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Configurations\\PagoConfiguration.cs",
+              "RelativeDocumentMoniker": "Microservicio.Coche.DataAccess\\Configurations\\PagoConfiguration.cs",
+              "ToolTip": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Configurations\\PagoConfiguration.cs",
+              "RelativeToolTip": "Microservicio.Coche.DataAccess\\Configurations\\PagoConfiguration.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAYwAsAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T19:40:03.163Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReservaConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Configurations\\ReservaConfiguration.cs",
+              "RelativeDocumentMoniker": "Microservicio.Coche.DataAccess\\Configurations\\ReservaConfiguration.cs",
+              "ToolTip": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Configurations\\ReservaConfiguration.cs",
+              "RelativeToolTip": "Microservicio.Coche.DataAccess\\Configurations\\ReservaConfiguration.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAYwFcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T19:39:26.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CocheDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Context\\CocheDbContext.cs",
+              "RelativeDocumentMoniker": "Microservicio.Coche.DataAccess\\Context\\CocheDbContext.cs",
+              "ToolTip": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Context\\CocheDbContext.cs",
+              "RelativeToolTip": "Microservicio.Coche.DataAccess\\Context\\CocheDbContext.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAA6wB0AAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T19:33:53.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Microservicio.Coche.API.csproj",
+              "DocumentMoniker": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.API\\Microservicio.Coche.API.csproj",
+              "RelativeDocumentMoniker": "Microservicio.Coche.API\\Microservicio.Coche.API.csproj",
+              "ToolTip": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.API\\Microservicio.Coche.API.csproj",
+              "RelativeToolTip": "Microservicio.Coche.API\\Microservicio.Coche.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-10T19:30:59.027Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

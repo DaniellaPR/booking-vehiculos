@@ -2,6 +2,15 @@
   <div class="wizard-card">
 
     <div class="wizard-header">
+      <!-- Imagen del vehículo -->
+      @if (vehiculoSeleccionado()) {
+      <div style="text-align:center; margin-bottom:12px;">
+        <img [src]="imagenVehiculo()"
+             [alt]="vehiculoSeleccionado()?.VEH_modelo"
+             style="width:100%; max-width:340px; height:180px; object-fit:cover; border-radius:10px; border:1px solid var(--border);"
+             onerror="this.src='https://bryxtfwmhpbnlywibuhx.supabase.co/storage/v1/object/public/ImagenesAutos/auto-default.jpg'">
+      </div>
+      }
       <div class="form-eyebrow">DriveX · {{ vehiculoSeleccionado()?.VEH_modelo || vehiculoSeleccionado()?.veH_modelo || 'Cargando vehículo...' }}</div>
       <div class="form-title">NUEVA RESERVA</div>
 
@@ -10,9 +19,11 @@
         <div class="step-line" [class.active]="step() >= 2"></div>
         <div class="step" [class.active]="step() >= 2">2. Protección</div>
         <div class="step-line" [class.active]="step() >= 3"></div>
-        <div class="step" [class.active]="step() >= 3">3. Resumen</div>
+        <div class="step" [class.active]="step() >= 3">3. Pago</div>
         <div class="step-line" [class.active]="step() >= 4"></div>
-        <div class="step" [class.active]="step() >= 4">4. Confirmar</div>
+        <div class="step" [class.active]="step() >= 4">4. Resumen</div>
+        <div class="step-line" [class.active]="step() >= 5"></div>
+        <div class="step" [class.active]="step() >= 5">5. Confirmar</div>
       </div>
     </div>
 
@@ -101,14 +112,47 @@
       </div>
       }
 
-      <!-- ── PASO 3: Resumen ── -->
+      <!-- ── PASO 3: Método de Pago ── -->
       @if (step() === 3) {
+      <div class="fade-in">
+        <h3 class="step-title">Método de Pago</h3>
+
+        <div style="background:var(--s2); border:1px solid var(--border); border-radius:10px; padding:16px 20px; margin-bottom:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span style="color:var(--text2); font-size:13px;">Total a pagar</span>
+            <span style="color:var(--cyan); font-size:22px; font-weight:800;">${{ costoTotal() | number:'1.2-2' }}</span>
+          </div>
+          <div style="font-size:11px; color:var(--text2);">${{ costoDiario() | number:'1.2-2' }}/día × {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}</div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Selecciona cómo pagar</label>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px;">
+            @for (metodo of [['TARJETA','💳 Tarjeta de crédito / débito'],['PAYPAL','🅿️ PayPal'],['TRANSFERENCIA','🏦 Transferencia bancaria'],['EFECTIVO','💵 Efectivo en sucursal']]; track $index) {
+            <label style="display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:8px; border:1px solid var(--border); cursor:pointer;"
+                   [style.borderColor]="reservaData().metodoPago === metodo[0] ? 'var(--cyan)' : 'var(--border)'"
+                   [style.background]="reservaData().metodoPago === metodo[0] ? 'rgba(0,212,255,0.06)' : 'var(--s2)'">
+              <input type="radio" name="metodoPago" [value]="metodo[0]"
+                     [checked]="reservaData().metodoPago === metodo[0]"
+                     (change)="setMetodoPago(metodo[0])"
+                     style="accent-color:var(--cyan);">
+              <span style="font-size:14px;">{{ metodo[1] }}</span>
+            </label>
+            }
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- ── PASO 4: Resumen ── -->
+      @if (step() === 4) {
       <div class="fade-in">
         <h3 class="step-title">Resumen de tu reserva</h3>
 
-        <!-- Info del vehículo -->
         <div class="vehicle-summary" style="display:flex; align-items:center; gap:14px; background:var(--s2); border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin-bottom:20px;">
-          <div style="font-size:32px;">🚗</div>
+          <img [src]="imagenVehiculo()"
+               style="width:72px; height:52px; object-fit:cover; border-radius:6px; flex-shrink:0;"
+               onerror="this.src='https://bryxtfwmhpbnlywibuhx.supabase.co/storage/v1/object/public/ImagenesAutos/auto-default.jpg'">
           <div>
             <div style="font-weight:700; font-size:15px; color:var(--text);">
               {{ vehiculoSeleccionado()?.VEH_modelo || vehiculoSeleccionado()?.veH_modelo || 'Vehículo' }}
@@ -121,8 +165,6 @@
         </div>
 
         <div class="resumen-box">
-
-          <!-- Precio vehículo -->
           <div class="resumen-item">
             <span>Vehículo <small style="color:var(--text2);">× {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}</small></span>
             <span class="price-val">
@@ -131,7 +173,6 @@
             </span>
           </div>
 
-          <!-- Seguro -->
           @if (reservaData().seguroId && costoSeguroDiario() > 0) {
           <div class="resumen-item">
             <span>Seguro <small style="color:var(--text2);">× {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}</small></span>
@@ -142,31 +183,29 @@
           </div>
           }
 
-          <!-- Extras -->
           @if (reservaData().extrasSeleccionados.length > 0) {
           <div style="margin-top: 10px; border-top: 1px dashed var(--border); padding-top: 10px;">
             <p style="font-size: 12px; color: var(--text2); margin-bottom: 5px;">Servicios adicionales:</p>
             @for (item of reservaData().extrasSeleccionados; track $index) {
             <div class="resumen-item" style="font-size: 13px; opacity: 0.85;">
-              <span>• {{ item.EXT_nombre || item.exT_nombre }}</span>
-              <span>
-                ${{ (item.EXT_costo || item.exT_costo) | number:'1.2-2' }}/día
-                <small style="color:var(--text2);"> = ${{ ((item.EXT_costo || item.exT_costo) * numeroDias()) | number:'1.2-2' }}</small>
-              </span>
+              <span>{{ item.EXT_nombre || item.exT_nombre }}</span>
+              <span>+${{ item.EXT_costo || item.exT_costo }}/día</span>
             </div>
             }
           </div>
           }
 
-          <div style="margin: 16px 0; height: 1px; background: var(--border);"></div>
-
+          <div style="margin: 12px 0; height: 1px; background: var(--border);"></div>
+          <div class="resumen-item">
+            <span style="color:var(--text2); font-size:12px;">Método de pago</span>
+            <span style="font-weight:600;">{{ reservaData().metodoPago }}</span>
+          </div>
           <div class="resumen-total">
             <span style="font-weight: 700;">TOTAL ESTIMADO ({{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }})</span>
             <span class="total-price" style="color: var(--cyan); font-size: 22px; font-weight: 800;">
               ${{ costoTotal() | number:'1.2-2' }}
             </span>
           </div>
-
           <div style="margin-top:10px; font-size:11px; color:var(--text2); text-align:right;">
             ${{ costoDiario() | number:'1.2-2' }} / día × {{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}
           </div>
@@ -174,17 +213,17 @@
       </div>
       }
 
-      <!-- ── PASO 4: Confirmar ── -->
-      @if (step() === 4) {
+      <!-- ── PASO 5: Confirmar ── -->
+      @if (step() === 5) {
       <div class="fade-in">
         <h3 class="step-title">Confirmar Reserva</h3>
 
-        <!-- Éxito -->
         @if (reservaExitosa()) {
         <div style="background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); padding:30px; border-radius:12px; text-align:center; margin-top:20px;">
           <div style="font-size:48px; margin-bottom:10px;">✅</div>
-          <h3 style="color:#34d399; margin-bottom:10px; font-weight:700;">¡Reserva confirmada con éxito!</h3>
-          <p style="color:var(--text2); margin-bottom:20px;">Tu vehículo te estará esperando. Puedes revisar tus reservas en tu perfil.</p>
+          <h3 style="color:#34d399; margin-bottom:10px; font-weight:700;">¡Reserva y pago confirmados!</h3>
+          <p style="color:var(--text2); margin-bottom:6px;">Tu vehículo te estará esperando.</p>
+          <p style="color:var(--text2); font-size:12px; margin-bottom:20px;">Método: {{ reservaData().metodoPago }} · Total: ${{ costoTotal() | number:'1.2-2' }}</p>
           <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
             <button class="btn-submit" style="width:auto; padding:10px 24px;" (click)="irAMisReservas()">
               📋 Ver mis reservas
@@ -196,7 +235,6 @@
         </div>
         }
 
-        <!-- No autenticado -->
         @else if (!authService.isAuthenticated()) {
         <div style="background:rgba(248,113,113,0.1); border:1px solid rgba(248,113,113,0.3); padding:20px; border-radius:12px; text-align:center; margin-top:20px;">
           <p style="color:#f87171; font-weight:600; margin-bottom:16px;">
@@ -208,7 +246,6 @@
         </div>
         }
 
-        <!-- Autenticado - mostrar resumen final -->
         @else {
         <div class="resumen-box" style="margin-bottom:20px;">
           <div class="resumen-item">
@@ -218,6 +255,10 @@
           <div class="resumen-item">
             <span style="color:var(--text2);">Período</span>
             <span style="font-weight:600;">{{ numeroDias() }} día{{ numeroDias() !== 1 ? 's' : '' }}</span>
+          </div>
+          <div class="resumen-item">
+            <span style="color:var(--text2);">Método de pago</span>
+            <span style="font-weight:600;">{{ reservaData().metodoPago }}</span>
           </div>
           <div style="margin:12px 0; height:1px; background:var(--border);"></div>
           <div class="resumen-total">
@@ -240,19 +281,19 @@
       <!-- ── Footer de navegación ── -->
       <div class="wizard-footer">
         <button class="btn-secondary" (click)="prevStep()"
-                [style.visibility]="step() === 1 ? 'hidden' : 'visible'">
+                [style.visibility]="step() === 1 || reservaExitosa() ? 'hidden' : 'visible'">
           Atrás
         </button>
 
-        @if (step() < 4 && !reservaExitosa()) {
+        @if (step() < 5 && !reservaExitosa()) {
         <button class="btn-submit btn-auto" (click)="nextStep()">Siguiente →</button>
         }
-        @else if (step() === 4 && authService.isAuthenticated() && !reservaExitosa()) {
+        @else if (step() === 5 && authService.isAuthenticated() && !reservaExitosa()) {
         <button class="btn-submit btn-auto"
                 [class.loading]="isLoading()"
                 (click)="finalizarReserva()"
                 [disabled]="isLoading()">
-          <span class="btn-text">✔ Confirmar y Reservar</span>
+          <span class="btn-text">✔ Confirmar y Pagar</span>
           <span class="btn-spinner"><span class="spinner"></span> Procesando...</span>
         </button>
         }

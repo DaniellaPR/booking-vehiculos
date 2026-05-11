@@ -19,6 +19,7 @@ export interface ActualizarVehiculoRequest {
     VEH_color?: string | null;
     VEH_kilometraje?: number;
     VEH_estado?: string | null;
+    VEH_imagenUrl?: string | null;
     VEH_usuarioModificacion?: string | null;
 }
 

@@ -52,6 +52,9 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAuditoriaService, AuditoriaService>(); // Indispensable para el Login y JWT
         services.AddScoped<IAuthService, AuthService>();
 
+        services.AddScoped<IPagoDataService, PagoDataService>();
+        services.AddScoped<IPagoService, PagoService>();
+
         return services;
     }
 }

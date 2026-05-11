@@ -23,11 +23,11 @@ export class VehiculosComponent implements OnInit {
   sucursales = signal<any[]>([]);
   isLoading = signal<boolean>(true);
 
-  // Modal
   mostrarModal = signal(false);
   guardando = signal(false);
   errorModal = signal<string | null>(null);
 
+  // FIX: VEH_imagenUrl incluido para poder guardarlo desde el modal
   form = {
     VEH_placa: '',
     VEH_modelo: '',
@@ -36,7 +36,8 @@ export class VehiculosComponent implements OnInit {
     VEH_kilometraje: 0,
     VEH_estado: 'Disponible',
     CAT_id: '',
-    SUC_id: ''
+    SUC_id: '',
+    VEH_imagenUrl: ''   // ← campo añadido
   };
 
   ngOnInit() {
@@ -67,6 +68,11 @@ export class VehiculosComponent implements OnInit {
     return cat ? (cat.CAT_costoBase || cat.caT_costoBase || 0) : 0;
   }
 
+  getImagen(v: any): string {
+    return v.VEH_imagenUrl || v.veH_imagenUrl ||
+      'https://bryxtfwmhpbnlywibuhx.supabase.co/storage/v1/object/public/ImagenesAutos/auto-default.jpg';
+  }
+
   abrirModal() {
     this.form = {
       VEH_placa: '',
@@ -76,7 +82,8 @@ export class VehiculosComponent implements OnInit {
       VEH_kilometraje: 0,
       VEH_estado: 'Disponible',
       CAT_id: '',
-      SUC_id: ''
+      SUC_id: '',
+      VEH_imagenUrl: ''
     };
     this.errorModal.set(null);
     this.mostrarModal.set(true);
@@ -110,7 +117,6 @@ export class VehiculosComponent implements OnInit {
 
   eliminar(id: string) {
     if (confirm('⚠️ ¿Estás seguro de que deseas eliminar este vehículo de forma permanente?')) {
-      // Usamos HttpClient directo en lugar del servicio autogenerado
       this.http.delete(`${environment.apiUrl}/api/v1/vehiculos/${id}`).subscribe({
         next: () => {
           this.vehiculos.update(v => v.filter(x => (x.VEH_id || x.veH_id) !== id));

@@ -11,9 +11,10 @@ import {
   CategoriasVehiculoService,
   VehiculosService,
   TarifasService,
-  ReservasService
+  ReservasService,
+  PagosService
 } from '../.././core/api';
-import { CrearReservaRequest } from '../../core/api/model/crearReservaRequest';
+import { ReservaRequestDto, CrearPagoRequest } from '../../core/api';
 
 @Component({
   selector: 'app-reserva-wizard',
@@ -34,8 +35,9 @@ export class ReservaWizardComponent implements OnInit {
   private categoriasSvc = inject(CategoriasVehiculoService);
   private tarifasSvc = inject(TarifasService);
   private reservasSvc = inject(ReservasService);
+  private pagosSvc = inject(PagosService);
 
-  // Control de pasos
+  // Control de pasos (ahora 5: Fechas, Protección, Pago, Resumen, Confirmar)
   step = signal<number>(1);
   isLoading = signal<boolean>(false);
   errorMsg = signal<string>('');
@@ -56,18 +58,19 @@ export class ReservaWizardComponent implements OnInit {
     sucursalDevolucionId: '',
     seguroId: '',
     extrasSeleccionados: [] as any[],
+    metodoPago: 'TARJETA' as string,
   });
 
   reservaExitosa = signal<boolean>(false);
+  reservaIdCreada = signal<string>('');
 
-  // ── Computed: precio base desde TARIFA (tabla real) ────────────────────
+  // ── Computed: precio base desde TARIFA ─────────────────────────────────
   precioBaseVehiculo = computed(() => {
     const v = this.vehiculoSeleccionado();
     if (!v) return 0;
     const catId = v.CAT_id || v.caT_id;
     const tarifa = this.tarifas().find(t => (t.CAT_id || t.caT_id) === catId);
     if (tarifa) return tarifa.TAR_precioDiario || tarifa.taR_precioDiario || 0;
-    // fallback en categoría
     const cat = this.categorias().find(c => (c.CAT_id || c.caT_id) === catId);
     return cat ? (cat.CAT_costoBase || cat.caT_costoBase || 0) : 0;
   });
@@ -81,7 +84,6 @@ export class ReservaWizardComponent implements OnInit {
     return dias > 0 ? dias : 1;
   });
 
-  // ── Computed: costo seguro por día ──────────────────────────────────────
   costoSeguroDiario = computed(() => {
     const seguroId = this.reservaData().seguroId;
     if (!seguroId) return 0;
@@ -89,19 +91,23 @@ export class ReservaWizardComponent implements OnInit {
     return seg ? (seg.SEG_costoDiario || seg.seG_costoDiario || 0) : 0;
   });
 
-  // ── Computed: extras total (por día) ───────────────────────────────────
   totalExtras = computed(() =>
     this.reservaData().extrasSeleccionados
       .reduce((sum: number, ext: any) => sum + (ext.EXT_costo || ext.exT_costo || 0), 0)
   );
 
-  // ── Computed: total diario ──────────────────────────────────────────────
   costoDiario = computed(() =>
     this.precioBaseVehiculo() + this.costoSeguroDiario() + this.totalExtras()
   );
 
-  // ── Computed: TOTAL FINAL (días × diario) ──────────────────────────────
   costoTotal = computed(() => this.costoDiario() * this.numeroDias());
+
+  // Imagen del vehículo con fallback
+  imagenVehiculo = computed(() => {
+    const v = this.vehiculoSeleccionado();
+    return v?.VEH_imagenUrl || v?.veH_imagenUrl ||
+      'https://bryxtfwmhpbnlywibuhx.supabase.co/storage/v1/object/public/ImagenesAutos/auto-default.jpg';
+  });
 
   ngOnInit() {
     const hoy = new Date();
@@ -117,7 +123,6 @@ export class ReservaWizardComponent implements OnInit {
 
     this.cargarCatalogos();
 
-    // ⚠️ La ruta es ':vehiculoId', no ':id'
     const vehiculoId = this.route.snapshot.paramMap.get('vehiculoId');
     if (vehiculoId) {
       this.obtenerVehiculo(vehiculoId);
@@ -163,7 +168,7 @@ export class ReservaWizardComponent implements OnInit {
       alert('⚠️ Selecciona fechas y sucursales para continuar.');
       return;
     }
-    if (this.step() < 4) this.step.update(s => s + 1);
+    if (this.step() < 5) this.step.update(s => s + 1);
   }
 
   prevStep() {
@@ -184,28 +189,14 @@ export class ReservaWizardComponent implements OnInit {
     return this.reservaData().extrasSeleccionados.some((e: any) => (e.EXT_id || e.exT_id) === id);
   }
 
-  setFechaRetiro(val: string) {
-    this.reservaData.update(d => ({ ...d, fechaRetiro: val }));
-  }
+  setFechaRetiro(val: string) { this.reservaData.update(d => ({ ...d, fechaRetiro: val })); }
+  setFechaDevolucion(val: string) { this.reservaData.update(d => ({ ...d, fechaDevolucion: val })); }
+  setSucursalRetiro(val: string) { this.reservaData.update(d => ({ ...d, sucursalRetiroId: val })); }
+  setSucursalDevolucion(val: string) { this.reservaData.update(d => ({ ...d, sucursalDevolucionId: val })); }
+  setSeguro(val: string) { this.reservaData.update(d => ({ ...d, seguroId: val })); }
+  setMetodoPago(val: string) { this.reservaData.update(d => ({ ...d, metodoPago: val })); }
 
-  setFechaDevolucion(val: string) {
-    this.reservaData.update(d => ({ ...d, fechaDevolucion: val }));
-  }
-
-  setSucursalRetiro(val: string) {
-    this.reservaData.update(d => ({ ...d, sucursalRetiroId: val }));
-  }
-
-  setSucursalDevolucion(val: string) {
-    this.reservaData.update(d => ({ ...d, sucursalDevolucionId: val }));
-  }
-
-  setSeguro(val: string) {
-    this.reservaData.update(d => ({ ...d, seguroId: val }));
-  }
-
-
-  // ── Confirmación real contra la API ────────────────────────────────────
+  // ── PASO 1: crear reserva → PASO 2: crear pago ─────────────────────────
   finalizarReserva() {
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
@@ -217,21 +208,53 @@ export class ReservaWizardComponent implements OnInit {
 
     const d = this.reservaData();
     const clienteId = this.authService.getClienteId();
+    const vehiculo = this.vehiculoSeleccionado();
 
-    const payload: CrearReservaRequest = {
-      CLI_id: clienteId ?? undefined,
-      RES_sucursalRetiroId: d.sucursalRetiroId,
-      RES_sucursalEntregaId: d.sucursalDevolucionId,
-      RES_fechaRetiro: new Date(d.fechaRetiro).toISOString(),
-      RES_fechaEntrega: new Date(d.fechaDevolucion).toISOString(),
-      RES_estado: 'Pendiente',
-      RES_usuarioCreacion: this.authService.getEmail() || 'cliente'
+    if (!vehiculo || !clienteId) {
+      this.errorMsg.set('Faltan datos del cliente o vehículo para procesar la reserva.');
+      this.isLoading.set(false);
+      return;
+    }
+
+    // ⚠️ FIX: ReservaRequestDto usa PascalCase (generado por OpenAPI desde C#)
+    const payload: ReservaRequestDto = {
+      VehiculoId: vehiculo.VEH_id || vehiculo.veH_id,
+      ClienteId: clienteId,
+      SucursalRetiroId: d.sucursalRetiroId,
+      SucursalEntregaId: d.sucursalDevolucionId,
+      FechaRetiro: new Date(d.fechaRetiro).toISOString(),
+      FechaEntrega: new Date(d.fechaDevolucion).toISOString()
     };
 
     this.reservasSvc.apiV1ReservasPost(payload).subscribe({
-      next: () => {
-        this.isLoading.set(false);
-        this.reservaExitosa.set(true);
+      next: (res: any) => {
+        const reservaId = res?.Data?.RES_id || res?.data?.res_id || res?.Data?.res_id;
+        if (reservaId) {
+          // Crear el pago vinculado
+          const pagoPayload: CrearPagoRequest = {
+            RES_id: reservaId,
+            PAG_monto: this.costoTotal(),
+            PAG_metodo: d.metodoPago,
+            PAG_estado: 'COMPLETADO'
+          };
+          this.pagosSvc.apiV1PagosPost(pagoPayload).subscribe({
+            next: () => {
+              this.isLoading.set(false);
+              this.reservaExitosa.set(true);
+            },
+            error: (err) => {
+              // La reserva se creó pero el pago falló — se muestra igual como exitosa
+              // para no dejar al usuario bloqueado; el admin puede gestionar el pago
+              console.warn('Reserva creada pero pago falló:', err);
+              this.isLoading.set(false);
+              this.reservaExitosa.set(true);
+            }
+          });
+        } else {
+          // Respuesta sin ID — igual marcamos como exitosa
+          this.isLoading.set(false);
+          this.reservaExitosa.set(true);
+        }
       },
       error: (err) => {
         this.isLoading.set(false);

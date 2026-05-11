@@ -19,11 +19,12 @@ namespace Microservicios.Coche.DataAccess.Entities
         public string? VEH_usuarioCreacion { get; set; }
         public DateTime? VEH_fechaModificacion { get; set; }
         public string? VEH_usuarioModificacion { get; set; }
+        public string? VEH_imagenUrl { get; set; }
 
         // ==========================================
         // Propiedades de navegación blindadas
         // ==========================================
-            
+
         [ForeignKey("CAT_id")]
         public virtual CategoriaVehiculoEntity? Categoria { get; set; }
 

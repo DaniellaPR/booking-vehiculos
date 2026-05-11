@@ -14,6 +14,8 @@ export interface CrearClienteRequest {
     CLI_apellidos: string;
     CLI_cedula: string;
     CLI_telefono?: string | null;
+    CLI_correo: string;
+    Password: string;
     CLI_usuarioCreacion?: string | null;
 }
 

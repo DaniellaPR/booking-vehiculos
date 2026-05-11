@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\frontend",
     "\\frontend\\booking-vehiculos",
     "\\frontend\\booking-vehiculos\\src",
     "\\frontend\\booking-vehiculos\\src\\app",
-    "\\frontend\\booking-vehiculos\\src\\app\\auth",
-    "\\frontend\\booking-vehiculos\\src\\app\\auth\\login",
+    "\\frontend\\booking-vehiculos\\src\\app\\admin",
+    "\\frontend\\booking-vehiculos\\src\\app\\admin\\catalogo",
+    "\\frontend\\booking-vehiculos\\src\\app\\admin\\vehiculos",
     "\\frontend\\booking-vehiculos\\src\\app\\marketplace",
-    "\\frontend\\booking-vehiculos\\src\\app\\marketplace\\busqueda",
-    "\\frontend\\booking-vehiculos\\src\\app\\marketplace\\landing",
-    "\\frontend\\booking-vehiculos\\src\\app\\shared"
+    "\\frontend\\booking-vehiculos\\src\\app\\marketplace\\reserva-wizard"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\frontend\\booking-vehiculos\\src\\app\\admin\\vehiculos\\vehiculos.html",
   "PreviewInSolutionExplorer": false
 }

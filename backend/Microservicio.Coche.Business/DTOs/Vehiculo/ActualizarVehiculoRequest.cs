@@ -11,5 +11,6 @@ public class ActualizarVehiculoRequest
     public string? VEH_color { get; set; }
     public decimal VEH_kilometraje { get; set; }
     public string VEH_estado { get; set; } = null!;
+    public string? VEH_imagenUrl { get; set; }
     public string? VEH_usuarioModificacion { get; set; }
 }

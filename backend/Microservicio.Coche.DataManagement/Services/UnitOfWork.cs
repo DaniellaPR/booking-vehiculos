@@ -45,6 +45,8 @@ public class UnitOfWork : IUnitOfWork
     public ReservaQueryRepository ReservaQueryRepository { get; }
     public IReservaDetalleRepository ReservaDetalleRepository { get; }
     public ReservaDetalleQueryRepository ReservaDetalleQueryRepository { get; }
+    public IPagoRepository PagoRepository { get; }
+    public PagoQueryRepository PagoQueryRepository { get; }
 
     public UnitOfWork(CocheDbContext context)
     {
@@ -85,6 +87,8 @@ public class UnitOfWork : IUnitOfWork
         ReservaQueryRepository = new ReservaQueryRepository(_context);
         ReservaDetalleRepository = new ReservaDetalleRepository(_context);
         ReservaDetalleQueryRepository = new ReservaDetalleQueryRepository(_context);
+        PagoRepository = new PagoRepository(_context);
+        PagoQueryRepository = new PagoQueryRepository(_context);
     }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

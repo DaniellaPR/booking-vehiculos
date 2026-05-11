@@ -56,5 +56,11 @@ public interface IUnitOfWork : IDisposable
     IReservaDetalleRepository ReservaDetalleRepository { get; }
     ReservaDetalleQueryRepository ReservaDetalleQueryRepository { get; }
 
+    // Módulo Transaccional (Pagos)
+    IPagoRepository PagoRepository { get; }
+    PagoQueryRepository PagoQueryRepository { get; }
+
+
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

@@ -21,7 +21,8 @@ public static class VehiculoDataMapper
             VEH_fechaCreacion = entity.VEH_fechaCreacion,
             VEH_usuarioCreacion = entity.VEH_usuarioCreacion,
             VEH_fechaModificacion = entity.VEH_fechaModificacion,
-            VEH_usuarioModificacion = entity.VEH_usuarioModificacion
+            VEH_usuarioModificacion = entity.VEH_usuarioModificacion,
+            VEH_imagenUrl = entity.VEH_imagenUrl
         };
     }
 
@@ -41,7 +42,8 @@ public static class VehiculoDataMapper
             VEH_fechaCreacion = model.VEH_fechaCreacion,
             VEH_usuarioCreacion = model.VEH_usuarioCreacion,
             VEH_fechaModificacion = model.VEH_fechaModificacion,
-            VEH_usuarioModificacion = model.VEH_usuarioModificacion
+            VEH_usuarioModificacion = model.VEH_usuarioModificacion,
+            VEH_imagenUrl = model.VEH_imagenUrl
         };
     }
 }

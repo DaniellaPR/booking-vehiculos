@@ -17,4 +17,5 @@ public class VehiculoDataModel
     public string? VEH_usuarioCreacion { get; set; }
     public DateTime? VEH_fechaModificacion { get; set; }
     public string? VEH_usuarioModificacion { get; set; }
+    public string? VEH_imagenUrl { get; set; }
 }

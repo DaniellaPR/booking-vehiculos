@@ -19,7 +19,8 @@ public static class ReservaDataMapper
             RES_fechaCreacion = entity.RES_fechaCreacion,
             RES_usuarioCreacion = entity.RES_usuarioCreacion,
             RES_fechaModificacion = entity.RES_fechaModificacion,
-            RES_usuarioModificacion = entity.RES_usuarioModificacion
+            RES_usuarioModificacion = entity.RES_usuarioModificacion,
+            VEH_id = entity.VEH_id
         };
     }
 
@@ -37,7 +38,8 @@ public static class ReservaDataMapper
             RES_fechaCreacion = model.RES_fechaCreacion,
             RES_usuarioCreacion = model.RES_usuarioCreacion,
             RES_fechaModificacion = model.RES_fechaModificacion,
-            RES_usuarioModificacion = model.RES_usuarioModificacion
+            RES_usuarioModificacion = model.RES_usuarioModificacion,
+            VEH_id = model.VEH_id
         };
     }
 }

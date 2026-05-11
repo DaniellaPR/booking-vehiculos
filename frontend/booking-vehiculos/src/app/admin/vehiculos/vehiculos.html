@@ -13,6 +13,7 @@
   <table class="admin-table">
     <thead>
       <tr>
+        <th>Imagen</th>
         <th>Placa</th>
         <th>Modelo</th>
         <th>Precio/Día</th>
@@ -25,6 +26,13 @@
     <tbody>
       @for (v of vehiculos(); track $index) {
       <tr>
+        <td>
+          <!-- FIX: miniatura de imagen del vehículo -->
+          <img [src]="getImagen(v)"
+               [alt]="v.VEH_modelo"
+               style="width:60px; height:40px; object-fit:cover; border-radius:5px; border:1px solid var(--border);"
+               onerror="this.src='https://bryxtfwmhpbnlywibuhx.supabase.co/storage/v1/object/public/ImagenesAutos/auto-default.jpg'">
+        </td>
         <td><strong>{{ v.VEH_placa }}</strong></td>
         <td>{{ v.VEH_modelo }}</td>
         <td style="color: var(--cyan); font-weight: 600;">
@@ -40,7 +48,7 @@
       </tr>
       } @empty {
       <tr>
-        <td colspan="7" style="text-align:center; color: var(--text2);">No hay vehículos registrados.</td>
+        <td colspan="8" style="text-align:center; color: var(--text2);">No hay vehículos registrados.</td>
       </tr>
       }
     </tbody>
@@ -107,6 +115,20 @@
             <option [value]="s.SUC_id">{{ s.SUC_nombre }} — {{ s.SUC_ciudad }}</option>
             }
           </select>
+        </div>
+        <!-- FIX: campo de URL de imagen -->
+        <div class="form-group" style="grid-column: 1 / -1;">
+          <label>URL de Imagen</label>
+          <input type="url" [(ngModel)]="form.VEH_imagenUrl"
+                 placeholder="https://bryxtfwmhpbnlywibuhx.supabase.co/storage/v1/object/public/ImagenesAutos/..." />
+          <small style="color:var(--text2); font-size:11px; margin-top:4px; display:block;">
+            Sube primero la imagen al Storage de Supabase (bucket: ImagenesAutos) y pega aquí la URL pública.
+          </small>
+          @if (form.VEH_imagenUrl) {
+          <img [src]="form.VEH_imagenUrl" alt="Preview"
+               style="margin-top:8px; width:120px; height:80px; object-fit:cover; border-radius:6px; border:1px solid var(--border);"
+               onerror="this.style.display='none'">
+          }
         </div>
       </div>
     </div>

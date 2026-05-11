@@ -81,6 +81,8 @@ namespace Microservicios.Coche.DataAccess.Configurations
                 .WithMany()
                 .HasForeignKey(x => x.RES_sucursalEntregaId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(e => e.VEH_id).HasColumnName("veh_id");
         }
     }
 }

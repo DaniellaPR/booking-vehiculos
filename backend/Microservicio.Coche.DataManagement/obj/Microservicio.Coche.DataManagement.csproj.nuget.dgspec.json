@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj": {}
+    "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj": {
+    "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
         "projectName": "Microservicio.Coche.DataAccess",
-        "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
+        "projectPath": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj",
         "packagesPath": "C:\\Users\\pdani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -357,14 +357,14 @@
         }
       }
     },
-    "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj": {
+    "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
+        "projectUniqueName": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
         "projectName": "Microservicio.Coche.DataManagement",
-        "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
+        "projectPath": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataManagement\\Microservicio.Coche.DataManagement.csproj",
         "packagesPath": "C:\\Users\\pdani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataManagement\\obj\\",
+        "outputPath": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -386,8 +386,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\pdani\\Downloads\\6toSemestre\\IntegraciónSistemas\\Clonado\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj"
+              "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\pdani\\source\\repos\\DaniellaPR\\booking-vehiculos\\backend\\Microservicio.Coche.DataAccess\\Microservicio.Coche.DataAccess.csproj"
               }
             }
           }
@@ -424,7 +424,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

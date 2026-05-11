@@ -10,5 +10,6 @@ public class CrearVehiculoRequest
     public string? VEH_color { get; set; }
     public decimal VEH_kilometraje { get; set; } = 0;
     public string VEH_estado { get; set; } = "Disponible";
+    public string? VEH_imagenUrl { get; set; }
     public string? VEH_usuarioCreacion { get; set; }
 }

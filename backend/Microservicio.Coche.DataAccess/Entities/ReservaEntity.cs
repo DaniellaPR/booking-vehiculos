@@ -16,6 +16,7 @@ namespace Microservicios.Coche.DataAccess.Entities
         public string? RES_usuarioCreacion { get; set; }
         public DateTime? RES_fechaModificacion { get; set; }
         public string? RES_usuarioModificacion { get; set; }
+        public Guid VEH_id { get; set; }
 
         // Propiedades de navegación
         public virtual ClienteEntity? Cliente { get; set; }
