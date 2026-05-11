@@ -8,9 +8,8 @@
     "\\frontend\\booking-vehiculos\\src\\app\\admin",
     "\\frontend\\booking-vehiculos\\src\\app\\admin\\catalogo",
     "\\frontend\\booking-vehiculos\\src\\app\\admin\\vehiculos",
-    "\\frontend\\booking-vehiculos\\src\\app\\marketplace",
-    "\\frontend\\booking-vehiculos\\src\\app\\marketplace\\reserva-wizard"
+    "\\frontend\\booking-vehiculos\\src\\app\\marketplace"
   ],
-  "SelectedNode": "\\frontend\\booking-vehiculos\\src\\app\\admin\\vehiculos\\vehiculos.html",
+  "SelectedNode": "\\frontend\\booking-vehiculos\\src\\app\\admin\\vehiculos\\vehiculos.ts",
   "PreviewInSolutionExplorer": false
 }

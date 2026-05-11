@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Microservicio.Coche.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5187ed54e9caf40ca51f700e55f2bf2592565355")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c2e0ffdd2608771129ed61c1b5f33cf5fef8133")]
 [assembly: System.Reflection.AssemblyProductAttribute("Microservicio.Coche.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Microservicio.Coche.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

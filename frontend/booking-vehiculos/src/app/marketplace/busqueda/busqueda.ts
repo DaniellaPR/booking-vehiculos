@@ -28,11 +28,32 @@ export class BusquedaComponent implements OnInit {
 
   categoriaSeleccionada = signal<string>('');
 
+
   vehiculosFiltrados = computed(() => {
     const catId = this.categoriaSeleccionada();
     if (!catId) return this.vehiculos();
-    return this.vehiculos().filter(v => (v.caT_id || v.CAT_id) === catId);
+
+    // Encontramos el NOMBRE de la categoría seleccionada en el dropdown
+    const catSeleccionada = this.categorias().find(c => (c.CAT_id || c.caT_id) === catId);
+    const nombreCat = catSeleccionada ? (catSeleccionada.CAT_nombre || catSeleccionada.caT_nombre) : null;
+
+    return this.vehiculos().filter(v => {
+      // Filtramos coincidiendo el UUID (viejo formato) o el Nombre (nuevo formato)
+      return (v.categoriaId || v.CAT_id || v.caT_id) === catId || v.categoria === nombreCat;
+    });
   });
+
+  getPrecioVehiculo(vehiculo: any): number {
+    if (!vehiculo) return 0;
+    if (vehiculo.precioPorDia != null) return vehiculo.precioPorDia;
+
+    // Cruce por nombre
+    if (vehiculo.categoria) {
+      const cat = this.categorias().find((c: any) => (c.CAT_nombre || c.caT_nombre) === vehiculo.categoria);
+      if (cat) return cat.CAT_costoBase || cat.caT_costoBase || 0;
+    }
+    return 0;
+  }
 
   ngOnInit() {
     this.cargarCategorias();
@@ -61,16 +82,7 @@ export class BusquedaComponent implements OnInit {
     });
   }
 
-  // Obtiene el precio diario cruzando Tarifa → CAT_id del vehículo
-  getPrecioVehiculo(vehiculo: any): number {
-    if (!vehiculo) return 0;
-    const catId = vehiculo.CAT_id || vehiculo.caT_id;
-    const tarifa = this.tarifas().find(t => (t.CAT_id || t.caT_id) === catId);
-    if (tarifa) return tarifa.TAR_precioDiario || tarifa.taR_precioDiario || 0;
-    // Fallback: buscar en categorías si tienen costoBase
-    const cat = this.categorias().find(c => (c.CAT_id || c.caT_id) === catId);
-    return cat ? (cat.CAT_costoBase || cat.caT_costoBase || 0) : 0;
-  }
+  
 
   onCategoriaChange(event: any) {
     this.categoriaSeleccionada.set(event.target.value);

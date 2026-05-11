@@ -30,11 +30,20 @@ export class VehiculoDetalleComponent implements OnInit {
   precioBase = computed(() => {
     const v = this.vehiculo();
     if (!v) return 0;
+    if (v.precioPorDia != null) return v.precioPorDia;
 
-    const catId = v.CAT_id || v.caT_id;
-    const categoria = this.categorias().find((c: any) => (c.CAT_id || c.caT_id) === catId);
+    if (v.categoria) {
+      const cat = this.categorias().find((c: any) => (c.CAT_nombre || c.caT_nombre) === v.categoria);
+      if (cat) return cat.CAT_costoBase || cat.caT_costoBase || 0;
+    }
+    return 0;
+  });
 
-    return categoria ? (categoria.CAT_costoBase || categoria.caT_costoBase || 0) : 0;
+  imagenUrl = computed(() => {
+    const v = this.vehiculo();
+    // Prioriza el nombre simple 'imagenUrl' del nuevo contrato
+    return v?.imagenUrl || v?.VEH_imagenUrl || v?.veH_imagenUrl ||
+      'https://bryxtfwmhpbnlywibuhx.supabase.co/storage/v1/object/public/ImagenesAutos/auto-default.jpg';
   });
 
   ngOnInit() {

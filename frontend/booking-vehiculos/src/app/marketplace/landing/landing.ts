@@ -34,18 +34,37 @@ export class LandingComponent implements OnInit {
   vehiculosFiltrados = computed(() => {
     let filtrados = this.vehiculos();
 
-    // Filtrar por categoría
     if (this.categoriaActiva()) {
-      filtrados = filtrados.filter(v => v.caT_id === this.categoriaActiva() || v.CAT_id === this.categoriaActiva());
+      const catIdActiva = this.categoriaActiva();
+      // Buscamos el nombre de la categoría a partir del ID activo
+      const catObj = this.categorias().find(c => (c.CAT_id || c.caT_id) === catIdActiva);
+      const nombreCat = catObj ? (catObj.CAT_nombre || catObj.caT_nombre) : null;
+
+      filtrados = filtrados.filter(v => {
+        return (v.categoriaId || v.CAT_id || v.caT_id) === catIdActiva || v.categoria === nombreCat;
+      });
     }
 
-    // Filtrar por sucursal (desde el buscador)
     if (this.sucursalSeleccionada()) {
-      filtrados = filtrados.filter(v => v.suC_id === this.sucursalSeleccionada() || v.SUC_id === this.sucursalSeleccionada());
+      filtrados = filtrados.filter(v =>
+        v.sucursalId === this.sucursalSeleccionada() ||
+        v.suC_id === this.sucursalSeleccionada() ||
+        v.SUC_id === this.sucursalSeleccionada()
+      );
     }
 
     return filtrados;
   });
+
+  getPrecioVehiculo(vehiculo: any): number {
+    if (!vehiculo) return 0;
+    if (vehiculo.precioPorDia != null) return vehiculo.precioPorDia;
+    if (vehiculo.categoria) {
+      const categoria = this.categorias().find((c: any) => (c.CAT_nombre || c.caT_nombre) === vehiculo.categoria);
+      if (categoria) return categoria.CAT_costoBase || categoria.caT_costoBase || 0;
+    }
+    return 0;
+  }
 
   // Función sencilla para saber si el usuario ya inició sesión
   isLogged(): boolean {
@@ -84,13 +103,6 @@ export class LandingComponent implements OnInit {
     });
   }
 
-  // 💥 LA FUNCIÓN CLAVE PARA OBTENER EL PRECIO
-  getPrecioVehiculo(vehiculo: any): number {
-    if (!vehiculo) return 0;
-    const catId = vehiculo.CAT_id || vehiculo.caT_id;
-    const categoria = this.categorias().find((c: any) => (c.CAT_id || c.caT_id) === catId);
-    return categoria ? (categoria.CAT_costoBase || categoria.caT_costoBase || 0) : 0;
-  }
 
   filtrarCategoria(catId: string | null) {
     this.categoriaActiva.set(catId);

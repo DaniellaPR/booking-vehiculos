@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+  import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -62,10 +62,63 @@ export class VehiculosComponent implements OnInit {
     });
   }
 
-  getPrecio(v: any): number {
-    const catId = v.CAT_id || v.caT_id;
-    const cat = this.categorias().find(c => (c.CAT_id || c.caT_id) === catId);
-    return cat ? (cat.CAT_costoBase || cat.caT_costoBase || 0) : 0;
+  // ... (mantén tus importaciones y variables igual)
+
+  getPrecio(veh: any): number {
+    if (!veh) return 0;
+    // 1. Si el backend ya lo envía (cumpliendo el contrato ideal)
+    if (veh.precioPorDia != null) return veh.precioPorDia;
+
+    // 2. Si no viene, cruzamos por el NOMBRE de la categoría
+    if (veh.categoria) {
+      const cat = this.categorias().find((c: any) => (c.CAT_nombre || c.caT_nombre) === veh.categoria);
+      if (cat) return cat.CAT_costoBase || cat.caT_costoBase || 0;
+    }
+
+    // 3. Fallback por si en el futuro vuelve a usar CAT_id
+    const catId = veh.categoriaId || veh.CAT_id || veh.caT_id;
+    if (catId) {
+      const cat = this.categorias().find((c: any) => (c.CAT_id || c.caT_id) === catId);
+      if (cat) return cat.CAT_costoBase || cat.caT_costoBase || 0;
+    }
+    return 0;
+  }
+
+  guardar() {
+    if (!this.form.VEH_placa || !this.form.VEH_modelo || !this.form.CAT_id || !this.form.SUC_id) {
+      this.errorModal.set('Placa, modelo, categoría y sucursal son obligatorios.');
+      return;
+    }
+    this.guardando.set(true);
+    this.errorModal.set(null);
+
+    // Mapeo Inteligente: Enviamos ambos formatos para asegurar compatibilidad 
+    // sin importar cómo generó OpenAPI el request de creación
+    const payload = {
+      ...this.form,
+      placa: this.form.VEH_placa,
+      modelo: this.form.VEH_modelo,
+      anio: this.form.VEH_anio,
+      color: this.form.VEH_color,
+      kilometraje: this.form.VEH_kilometraje,
+      estado: this.form.VEH_estado,
+      imagenUrl: this.form.VEH_imagenUrl,
+      categoriaId: this.form.CAT_id,
+      sucursalId: this.form.SUC_id
+    };
+
+    this.http.post<any>(`${environment.apiUrl}/api/v1/vehiculos`, payload).subscribe({
+      next: (res) => {
+        const nuevo = res.Data || res.data;
+        if (nuevo) this.vehiculos.update(vs => [...vs, nuevo]);
+        this.guardando.set(false);
+        this.mostrarModal.set(false);
+      },
+      error: (err) => {
+        this.guardando.set(false);
+        this.errorModal.set(err.error?.Message || err.error?.message || 'Error al crear vehículo.');
+      }
+    });
   }
 
   getImagen(v: any): string {
@@ -93,27 +146,7 @@ export class VehiculosComponent implements OnInit {
     this.mostrarModal.set(false);
   }
 
-  guardar() {
-    if (!this.form.VEH_placa || !this.form.VEH_modelo || !this.form.CAT_id || !this.form.SUC_id) {
-      this.errorModal.set('Placa, modelo, categoría y sucursal son obligatorios.');
-      return;
-    }
-    this.guardando.set(true);
-    this.errorModal.set(null);
-
-    this.http.post<any>(`${environment.apiUrl}/api/v1/vehiculos`, this.form).subscribe({
-      next: (res) => {
-        const nuevo = res.Data || res.data;
-        if (nuevo) this.vehiculos.update(v => [...v, nuevo]);
-        this.guardando.set(false);
-        this.mostrarModal.set(false);
-      },
-      error: (err) => {
-        this.guardando.set(false);
-        this.errorModal.set(err.error?.Message || err.error?.message || 'Error al crear vehículo.');
-      }
-    });
-  }
+  
 
   eliminar(id: string) {
     if (confirm('⚠️ ¿Estás seguro de que deseas eliminar este vehículo de forma permanente?')) {
